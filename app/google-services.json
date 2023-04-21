@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "224257736697",
+    "project_id": "paqta-app---beta-01",
+    "storage_bucket": "paqta-app---beta-01.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224257736697:android:e873385b315f320ac74728",
+        "android_client_info": {
+          "package_name": "com.optic.paqta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "224257736697-d3h4jpdtcan6muqiiohvq8us70g42r6o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGMYeJdFaA7iGMnG3fm60I9aDCDXjeiBk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "224257736697-d3h4jpdtcan6muqiiohvq8us70g42r6o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
