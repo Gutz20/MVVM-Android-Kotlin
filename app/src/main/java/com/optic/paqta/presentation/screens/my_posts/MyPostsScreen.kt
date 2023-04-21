@@ -1,26 +1,24 @@
 package com.optic.paqta.presentation.screens.my_posts
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Icon
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.optic.paqta.presentation.navigation.DetailsScreen
 import com.optic.paqta.presentation.screens.my_posts.components.GetPostsByIdUser
-import com.optic.paqta.presentation.screens.my_posts.components.MyPostsContent
+import com.optic.paqta.presentation.navigation.DetailsScreen
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun MyPostsScreen(navController: NavHostController) {
-    
+
     Scaffold(
         content = {
-           GetPostsByIdUser(navController = navController)
+            GetPostsByIdUser(navController = navController)
         },
         floatingActionButton = {
             FloatingActionButton(
@@ -33,6 +31,5 @@ fun MyPostsScreen(navController: NavHostController) {
                 )
             }
         }
-    ) 
-    
-}
+    )
+} 

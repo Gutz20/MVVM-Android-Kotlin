@@ -8,7 +8,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.optic.paqta.domain.model.Response
 import com.optic.paqta.presentation.components.ProgressBar
-import com.optic.paqta.presentation.navigation.AuthScreen
 import com.optic.paqta.presentation.navigation.Graph
 import com.optic.paqta.presentation.screens.signup.SignupViewModel
 
@@ -28,5 +27,8 @@ fun SignUp(navController: NavHostController, viewModel: SignupViewModel = hiltVi
         is Response.Failure -> {
             Toast.makeText(LocalContext.current, signupResponse.exception?.message ?: "Error desconocido", Toast.LENGTH_LONG).show()
         }
+
+        else -> {}
     }
+
 }

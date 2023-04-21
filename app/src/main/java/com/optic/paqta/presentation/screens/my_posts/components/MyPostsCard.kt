@@ -1,7 +1,13 @@
 package com.optic.paqta.presentation.screens.my_posts.components
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
@@ -25,7 +31,11 @@ import com.optic.paqta.presentation.navigation.DetailsScreen
 import com.optic.paqta.presentation.screens.my_posts.MyPostsViewModel
 
 @Composable
-fun MyPostsCard(navController: NavHostController, post: Post, viewModel: MyPostsViewModel = hiltViewModel()) {
+fun MyPostsCard(
+    navController: NavHostController,
+    post: Post,
+    viewModel: MyPostsViewModel = hiltViewModel()
+) {
 
     Card(
         modifier = Modifier
@@ -35,8 +45,7 @@ fun MyPostsCard(navController: NavHostController, post: Post, viewModel: MyPosts
             },
         elevation = 4.dp,
         shape = RoundedCornerShape(20.dp),
-        contentColor = Color.White,
-
+        contentColor = Color.White
     ) {
         Column() {
             AsyncImage(
@@ -53,7 +62,7 @@ fun MyPostsCard(navController: NavHostController, post: Post, viewModel: MyPosts
                 fontWeight = FontWeight.Bold
             )
             Text(
-                modifier = Modifier.padding(start = 15.dp, end = 15.dp, top = 3.dp),
+                modifier = Modifier.padding(horizontal = 15.dp, vertical = 3.dp),
                 text = post.description,
                 fontSize = 13.sp,
                 maxLines = 2,
@@ -63,13 +72,11 @@ fun MyPostsCard(navController: NavHostController, post: Post, viewModel: MyPosts
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                IconButton(
-                    onClick = {
-                        navController.navigate(route = DetailsScreen.UpdatePost.passPost(post.toJson()))
-                    }
-                ) {
+                IconButton(onClick = {
+                    navController.navigate(route = DetailsScreen.UpdatePost.passPost(post.toJson()))
+                }) {
                     Icon(
-                        modifier = Modifier.size(25.dp),
+                        modifier = Modifier.size(30.dp),
                         imageVector = Icons.Default.Edit,
                         contentDescription = "",
                         tint = Color.White
@@ -77,7 +84,7 @@ fun MyPostsCard(navController: NavHostController, post: Post, viewModel: MyPosts
                 }
                 IconButton(onClick = { viewModel.delete(post.id) }) {
                     Icon(
-                        modifier = Modifier.size(25.dp),
+                        modifier = Modifier.size(30.dp),
                         imageVector = Icons.Default.Delete,
                         contentDescription = "",
                         tint = Color.White

@@ -16,8 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MyPostsViewModel @Inject constructor(
     private val postsUseCases: PostsUseCases,
-    private val authUseCases: AuthUseCases
-): ViewModel() {
+    private val authUseCases: AuthUseCases,
+) : ViewModel() {
 
     var postsResponse by mutableStateOf<Response<List<Post>>?>(null)
     var deleteResponse by mutableStateOf<Response<Boolean>?>(null)

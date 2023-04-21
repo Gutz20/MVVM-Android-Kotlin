@@ -1,12 +1,19 @@
 package com.optic.paqta.presentation.screens.update_post.components
 
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.RadioButton
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.List
@@ -18,7 +25,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -26,12 +32,8 @@ import coil.compose.AsyncImage
 import com.optic.paqta.R
 import com.optic.paqta.presentation.components.DefaultTextField
 import com.optic.paqta.presentation.components.DialogCapturePicture
-import com.optic.paqta.presentation.screens.new_post.NewPostViewModel
 import com.optic.paqta.presentation.screens.update_post.UpdatePostViewModel
-import com.optic.paqta.presentation.ui.theme.PaqtaTheme
 import com.optic.paqta.presentation.ui.theme.Red500
-
-
 
 @Composable
 fun UpdatePostContent(viewModel: UpdatePostViewModel = hiltViewModel()) {
@@ -45,25 +47,22 @@ fun UpdatePostContent(viewModel: UpdatePostViewModel = hiltViewModel()) {
         takePhoto = { viewModel.takePhoto() },
         pickImage = { viewModel.pickImage() }
     )
+
     Box(
-        modifier = Modifier
-            .fillMaxWidth()
-
-
+        modifier = Modifier.fillMaxWidth(),
     ) {
-
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
 
-        ) {
+            ) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(170.dp)
-                    .background(Red500),
+                    .background(Red500)
             ) {
                 Column(
                     modifier = Modifier.fillMaxWidth(),
@@ -78,11 +77,10 @@ fun UpdatePostContent(viewModel: UpdatePostViewModel = hiltViewModel()) {
                                     dialogState.value = true
                                 },
                             model = viewModel.state.image,
-                            contentDescription = "Selected image",
+                            contentDescription = "Selected Image",
                             contentScale = ContentScale.Crop
                         )
-                    }
-                    else {
+                    } else {
                         Image(
                             modifier = Modifier
                                 .height(120.dp)
@@ -90,7 +88,7 @@ fun UpdatePostContent(viewModel: UpdatePostViewModel = hiltViewModel()) {
                                     dialogState.value = true
                                 },
                             painter = painterResource(id = R.drawable.add_image),
-                            contentDescription = "Imagen de usuario"
+                            contentDescription = "Imagen de Usuario"
                         )
                         Text(
                             text = "SELECCIONA UNA IMAGEN",
@@ -100,8 +98,8 @@ fun UpdatePostContent(viewModel: UpdatePostViewModel = hiltViewModel()) {
                     }
 
                 }
-
             }
+
             DefaultTextField(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -111,14 +109,13 @@ fun UpdatePostContent(viewModel: UpdatePostViewModel = hiltViewModel()) {
                 label = "Nombre del juego",
                 icon = Icons.Default.Face,
                 errorMsg = "",
-                validateField = {
-
-                }
+                validateField = { }
             )
+
             DefaultTextField(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 0.dp, start = 20.dp, end = 20.dp),
+                    .padding(top = 25.dp, start = 20.dp, end = 20.dp),
                 value = state.description,
                 onValueChange = { viewModel.onDescriptionInput(it) },
                 label = "Descripcion",
@@ -128,12 +125,14 @@ fun UpdatePostContent(viewModel: UpdatePostViewModel = hiltViewModel()) {
 
                 }
             )
+
             Text(
                 modifier = Modifier.padding(vertical = 15.dp),
                 text = "CATEGORIAS",
                 fontSize = 17.sp,
                 fontWeight = FontWeight.Bold
             )
+
             viewModel.radioOptions.forEach { option ->
                 Row(
                     modifier = Modifier
@@ -150,6 +149,7 @@ fun UpdatePostContent(viewModel: UpdatePostViewModel = hiltViewModel()) {
                         onClick = { viewModel.onCategoryInput(option.category) }
                     )
                     Row() {
+
                         Text(
                             modifier = Modifier
                                 .width(105.dp)
@@ -158,8 +158,8 @@ fun UpdatePostContent(viewModel: UpdatePostViewModel = hiltViewModel()) {
                         )
                         Image(
                             modifier = Modifier
-                                .height(50.dp)
-                                .padding(8.dp),
+                                .height(40.dp)
+                                .padding(5.dp),
                             painter = painterResource(id = option.image),
                             contentDescription = ""
                         )
@@ -167,7 +167,6 @@ fun UpdatePostContent(viewModel: UpdatePostViewModel = hiltViewModel()) {
                 }
             }
         }
-
-
     }
 }
+

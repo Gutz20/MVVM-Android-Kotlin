@@ -1,14 +1,20 @@
 package com.optic.paqta.presentation.screens.profile.components
 
-
 import android.app.Activity
 import android.content.Intent
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,19 +29,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
-
 import com.optic.paqta.R
 import com.optic.paqta.presentation.MainActivity
 import com.optic.paqta.presentation.components.DefaultButton
-import com.optic.paqta.presentation.navigation.AuthScreen
 import com.optic.paqta.presentation.navigation.DetailsScreen
-import com.optic.paqta.presentation.navigation.Graph
 import com.optic.paqta.presentation.screens.profile.ProfileViewModel
 
 @Composable
-fun ProfileContent(navController: NavHostController, viewModel: ProfileViewModel = hiltViewModel()) {
+fun ProfileContent(
+    navController: NavHostController,
+    viewModel: ProfileViewModel = hiltViewModel()
+) {
 
     val activity = LocalContext.current as? Activity
 
@@ -45,7 +50,6 @@ fun ProfileContent(navController: NavHostController, viewModel: ProfileViewModel
     ) {
 
         Box() {
-
             Image(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -72,20 +76,17 @@ fun ProfileContent(navController: NavHostController, viewModel: ProfileViewModel
                             .size(115.dp)
                             .clip(CircleShape),
                         model = viewModel.userData.image,
-                        contentDescription = "User image",
+                        contentDescription = "User Image",
                         contentScale = ContentScale.Crop
                     )
-                }
-                else {
+                } else {
                     Image(
                         modifier = Modifier.size(115.dp),
                         painter = painterResource(id = R.drawable.user),
                         contentDescription = ""
                     )
                 }
-
             }
-
         }
 
         Spacer(modifier = Modifier.height(55.dp))
@@ -112,10 +113,9 @@ fun ProfileContent(navController: NavHostController, viewModel: ProfileViewModel
                 )
             }
         )
-        Spacer(modifier = Modifier.height(10.dp))
         DefaultButton(
             modifier = Modifier.width(250.dp),
-            text = "Cerrar sesion",
+            text = "Cerrar Sesion",
             onClick = {
                 viewModel.logout()
                 activity?.finish()
@@ -124,5 +124,4 @@ fun ProfileContent(navController: NavHostController, viewModel: ProfileViewModel
         )
 
     }
-
 }

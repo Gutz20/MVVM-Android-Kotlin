@@ -2,7 +2,12 @@ package com.optic.paqta.presentation.screens.posts.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
@@ -14,10 +19,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.optic.paqta.R
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
+import com.optic.paqta.R
 import com.optic.paqta.domain.model.Post
 import com.optic.paqta.presentation.navigation.DetailsScreen
 import com.optic.paqta.presentation.screens.posts.PostsViewModel
@@ -33,8 +38,7 @@ fun PostsCard(navController: NavHostController, post: Post, viewModel: PostsView
             },
         elevation = 4.dp,
         shape = RoundedCornerShape(20.dp),
-        contentColor = Color.White,
-
+        contentColor = Color.White
     ) {
         Column() {
             AsyncImage(
@@ -56,30 +60,30 @@ fun PostsCard(navController: NavHostController, post: Post, viewModel: PostsView
                 fontSize = 12.sp
             )
             Text(
-                modifier = Modifier.padding(start = 15.dp, end = 15.dp, top = 3.dp, bottom = 10.dp),
+                modifier = Modifier.padding(start = 15.dp, end = 3.dp, top = 3.dp, bottom = 10.dp),
                 text = post.description,
                 fontSize = 13.sp,
                 maxLines = 2,
                 color = Color.Gray
             )
             Row(
-                modifier = Modifier.padding(start = 15.dp, bottom = 15.dp)
+                modifier = Modifier
+                    .padding(start = 15.dp, bottom = 15.dp)
             ) {
                 if (post.likes.contains(viewModel.currentUser?.uid)) {
                     Image(
                         modifier = Modifier
-                            .size(23.dp)
+                            .size(25.dp)
                             .clickable {
                                 viewModel.deleteLike(post.id, viewModel.currentUser?.uid ?: "")
                             },
                         painter = painterResource(id = R.drawable.like),
                         contentDescription = ""
                     )
-                }
-                else {
+                } else {
                     Image(
                         modifier = Modifier
-                            .size(23.dp)
+                            .size(25.dp)
                             .clickable {
                                 viewModel.like(post.id, viewModel.currentUser?.uid ?: "")
                             },
@@ -89,7 +93,8 @@ fun PostsCard(navController: NavHostController, post: Post, viewModel: PostsView
                 }
 
                 Text(
-                    modifier = Modifier.padding(start = 5.dp),
+                    modifier = Modifier
+                        .padding(start = 5.dp),
                     text = post.likes.size.toString(),
                     fontWeight = FontWeight.Bold,
                     fontSize = 17.sp

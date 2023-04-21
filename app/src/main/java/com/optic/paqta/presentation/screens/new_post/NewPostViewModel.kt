@@ -1,14 +1,12 @@
 package com.optic.paqta.presentation.screens.new_post
 
 import android.content.Context
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.optic.paqta.R
-
 import com.optic.paqta.domain.model.Post
 import com.optic.paqta.domain.model.Response
 import com.optic.paqta.domain.use_cases.auth.AuthUseCases
@@ -26,27 +24,27 @@ class NewPostViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
     private val postsUseCases: PostsUseCases,
     private val authUseCases: AuthUseCases,
-): ViewModel() {
+) :
+    ViewModel() {
 
     var state by mutableStateOf(NewPostState())
 
-    // FILE
+    //    FILE
     var file: File? = null
     val resultingActivityHandler = ResultingActivityHandler()
 
-    // RESPONSE
     var createPostResponse by mutableStateOf<Response<Boolean>?>(null)
         private set
 
-    //USER SESSION
+    //    SESION DE USUARIO
     val currentUser = authUseCases.getCurrentUser()
 
     val radioOptions = listOf(
-        CategoryRadioButton("Recomendacion ", R.drawable.icon_pc),
-        CategoryRadioButton("Equipo Electronico", R.drawable.icon_ps4),
-        CategoryRadioButton("Botiquin", R.drawable.icon_xbox),
-        CategoryRadioButton("Comida", R.drawable.icon_nintendo),
-        CategoryRadioButton("Otros", R.drawable.icon_mobile),
+        CategoryRadioButton("PC", R.drawable.icon_pc),
+        CategoryRadioButton("PS4", R.drawable.icon_ps4),
+        CategoryRadioButton("XBOX", R.drawable.icon_xbox),
+        CategoryRadioButton("NINTENDO", R.drawable.icon_nintendo),
+        CategoryRadioButton("MOBIL", R.drawable.icon_mobile),
     )
 
     fun createPost(post: Post) = viewModelScope.launch {
@@ -83,10 +81,10 @@ class NewPostViewModel @Inject constructor(
 
     fun clearForm() {
         state = state.copy(
-            name ="",
+            name = "",
             category = "",
             description = "",
-            image = ""
+            image = "",
         )
         createPostResponse = null
     }
@@ -108,6 +106,7 @@ class NewPostViewModel @Inject constructor(
     }
 
 }
+
 
 data class CategoryRadioButton(
     var category: String,

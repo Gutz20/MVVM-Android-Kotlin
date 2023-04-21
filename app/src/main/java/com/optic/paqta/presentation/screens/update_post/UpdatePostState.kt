@@ -1,6 +1,6 @@
 package com.optic.paqta.presentation.screens.update_post
 
-data class UpdatePostState(
+data class UpdatePostState (
     val image: String = "",
     val name: String = "",
     val description: String = "",

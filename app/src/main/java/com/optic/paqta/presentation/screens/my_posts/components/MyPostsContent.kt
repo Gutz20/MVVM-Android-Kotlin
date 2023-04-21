@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.optic.paqta.domain.model.Post
+import com.optic.paqta.presentation.screens.my_posts.components.MyPostsCard
 
 @Composable
 fun MyPostsContent(
@@ -23,7 +24,7 @@ fun MyPostsContent(
         items(
             items = posts
         ) { post ->
-            MyPostsCard(navController = navController, post = post)
+             MyPostsCard(navController, post = post)
         }
     }
 }

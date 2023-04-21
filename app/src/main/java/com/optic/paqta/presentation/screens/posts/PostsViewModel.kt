@@ -10,7 +10,6 @@ import com.optic.paqta.domain.model.Response
 import com.optic.paqta.domain.use_cases.auth.AuthUseCases
 import com.optic.paqta.domain.use_cases.posts.PostsUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,7 +17,7 @@ import javax.inject.Inject
 class PostsViewModel @Inject constructor(
     private val postsUseCases: PostsUseCases,
     private val authUseCases: AuthUseCases
-): ViewModel() {
+    ) : ViewModel() {
 
     var postsResponse by mutableStateOf<Response<List<Post>>?>(null)
     var likeResponse by mutableStateOf<Response<Boolean>?>(null)
@@ -43,7 +42,7 @@ class PostsViewModel @Inject constructor(
 
     fun getPosts() = viewModelScope.launch {
         postsResponse = Response.Loading
-        postsUseCases.getPosts().collect() { response ->
+        postsUseCases.getPosts().collect() {response ->
             postsResponse = response
         }
     }

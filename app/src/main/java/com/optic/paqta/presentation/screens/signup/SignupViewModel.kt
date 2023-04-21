@@ -1,7 +1,6 @@
 package com.optic.paqta.presentation.screens.signup
 
 import android.util.Patterns
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -13,49 +12,47 @@ import com.optic.paqta.domain.model.User
 import com.optic.paqta.domain.use_cases.auth.AuthUseCases
 import com.optic.paqta.domain.use_cases.users.UsersUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SignupViewModel @Inject constructor(private val authUseCases: AuthUseCases, private val usersUseCases: UsersUseCases): ViewModel() {
+class SignupViewModel @Inject constructor(private val authUseCases: AuthUseCases, private val usersUserCases: UsersUseCases): ViewModel()  {
 
-    // STATE FORM
+//    STATE FORM
     var state by mutableStateOf(SignupState())
         private set
 
-    // USERNAME
+    //    USERNAME
     var isUsernameValid by mutableStateOf(false)
         private set
-    var usernameErrMsg by mutableStateOf("")
+    var usernameErrMessage by mutableStateOf("")
         private set
 
-    // EMAIL
+    //    EMAIL
     var isEmailValid by mutableStateOf(false)
         private set
-    var emailErrMsg by mutableStateOf("")
+    var emailErrorMessage by mutableStateOf("")
         private set
 
-    // PASSWORD
+    //    PASSWORD
     var isPasswordValid by mutableStateOf(false)
         private set
-    var passwordErrMsg by mutableStateOf("")
+    var passwordErrorMessage by mutableStateOf("")
         private set
 
-    // CONFIRMAR CONTRASENA
-    var isconfirmPassword by mutableStateOf(false)
+    //    CONFIRMAR CONTRASENA
+    var isConfirmPassword by mutableStateOf(false)
         private set
     var confirmPasswordErrMsg by mutableStateOf("")
         private set
 
-    // ENABLE BUTTON
+    // Enable Button
     var isEnabledLoginButton = false
 
     var signupResponse by mutableStateOf<Response<FirebaseUser>?>(null)
         private set
 
-    var user = User()
+    val user = User()
 
     fun onEmailInput(email: String) {
         state = state.copy(email = email)
@@ -82,7 +79,7 @@ class SignupViewModel @Inject constructor(private val authUseCases: AuthUseCases
 
     fun createUser() = viewModelScope.launch {
         user.id = authUseCases.getCurrentUser()!!.uid
-        usersUseCases.create(user)
+        usersUserCases.create(user)
     }
 
     fun signup(user: User) = viewModelScope.launch {
@@ -91,64 +88,60 @@ class SignupViewModel @Inject constructor(private val authUseCases: AuthUseCases
         signupResponse = result
     }
 
-    fun enabledLoginButton() {
+    fun enableLoginButton() {
         isEnabledLoginButton =
             isEmailValid &&
             isPasswordValid &&
             isUsernameValid &&
-            isconfirmPassword
+            isConfirmPassword
     }
 
     fun validateConfirmPassword() {
         if (state.password == state.confirmPassword) {
-            isconfirmPassword = true
+            isConfirmPassword = true
             confirmPasswordErrMsg = ""
-        }
-        else {
-            isconfirmPassword = false
+        } else {
+            isConfirmPassword = false
             confirmPasswordErrMsg = "Las contraseñas no coinciden"
         }
-        enabledLoginButton()
+        enableLoginButton()
     }
 
     fun validateUsername() {
         if (state.username.length >= 5) {
             isUsernameValid = true
-            usernameErrMsg = ""
-        }
-        else {
+            usernameErrMessage = ""
+        } else {
             isUsernameValid = false
-            usernameErrMsg = "Al menos 5 caracteres"
+            usernameErrMessage = "Al menos 5 caracteres"
         }
 
-        enabledLoginButton()
+        enableLoginButton()
     }
 
     fun validateEmail() {
-        // ES UN EMAIL VALIDO
+//        Es un email valido
         if (Patterns.EMAIL_ADDRESS.matcher(state.email).matches()) {
             isEmailValid = true
-            emailErrMsg = ""
-        }
-        else {
+            emailErrorMessage = ""
+        } else {
             isEmailValid = false
-            emailErrMsg = "El email no es valido"
+            emailErrorMessage = "El email no es valido"
         }
 
-        enabledLoginButton()
+        enableLoginButton()
     }
 
     fun validatePassword() {
         if (state.password.length >= 6) {
             isPasswordValid = true
-            passwordErrMsg = ""
-        }
-        else {
+            passwordErrorMessage = ""
+        } else {
             isPasswordValid = false
-            passwordErrMsg = "Al menos 6 caracteres"
+            passwordErrorMessage = "Al menos 6 caracteres"
         }
 
-        enabledLoginButton()
+        enableLoginButton()
     }
 
 

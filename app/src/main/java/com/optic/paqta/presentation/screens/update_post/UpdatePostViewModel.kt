@@ -1,7 +1,6 @@
 package com.optic.paqta.presentation.screens.update_post
 
 import android.content.Context
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -27,23 +26,24 @@ class UpdatePostViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val postsUseCases: PostsUseCases,
     private val authUseCases: AuthUseCases,
-): ViewModel() {
+) :
+    ViewModel() {
 
     var state by mutableStateOf(UpdatePostState())
 
-    // FILE
+    //    FILE
     var file: File? = null
     val resultingActivityHandler = ResultingActivityHandler()
 
-    // ARGUMENTS
+    //    ARGUMENTS
     val data = savedStateHandle.get<String>("post")
     val post = Post.fromJson(data!!)
 
-    // RESPONSE
+    //    RESPONSE
     var updatePostResponse by mutableStateOf<Response<Boolean>?>(null)
         private set
 
-    //USER SESSION
+    //    SESION DE USUARIO
     val currentUser = authUseCases.getCurrentUser()
 
     val radioOptions = listOf(
@@ -58,8 +58,8 @@ class UpdatePostViewModel @Inject constructor(
         state = state.copy(
             name = post.name,
             description = post.description,
-            image = post.image,
             category = post.category,
+            image = post.image,
         )
     }
 
@@ -99,10 +99,10 @@ class UpdatePostViewModel @Inject constructor(
 
     fun clearForm() {
 //        state = state.copy(
-//            name ="",
+//            name = "",
 //            category = "",
 //            description = "",
-//            image = ""
+//            image = "",
 //        )
         updatePostResponse = null
     }
@@ -124,6 +124,7 @@ class UpdatePostViewModel @Inject constructor(
     }
 
 }
+
 
 data class CategoryRadioButton(
     var category: String,
