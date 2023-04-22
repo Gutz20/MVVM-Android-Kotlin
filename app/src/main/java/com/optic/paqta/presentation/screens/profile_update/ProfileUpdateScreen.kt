@@ -1,6 +1,5 @@
 package com.optic.paqta.presentation.screens.profile_update
 
-import android.util.Log
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
@@ -15,8 +14,6 @@ fun ProfileUpdateScreen(
     navController: NavHostController,
     user: String
 ) {
-    Log.d("ProfileEditScreen", "Usuario: $user")
-
     Scaffold(
         topBar = {
             DefaultTopBar(

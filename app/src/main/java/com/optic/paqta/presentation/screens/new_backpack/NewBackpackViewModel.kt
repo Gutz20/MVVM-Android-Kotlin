@@ -1,18 +1,17 @@
-package com.optic.paqta.presentation.screens.new_post
+package com.optic.paqta.presentation.screens.new_backpack
 
 import android.content.Context
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.optic.paqta.R
+import com.optic.paqta.domain.model.Backpack
 
-import com.optic.paqta.domain.model.Post
 import com.optic.paqta.domain.model.Response
 import com.optic.paqta.domain.use_cases.auth.AuthUseCases
-import com.optic.paqta.domain.use_cases.posts.PostsUseCases
+import com.optic.paqta.domain.use_cases.backpacks.BackpacksUseCases
 import com.optic.paqta.presentation.utils.ComposeFileProvider
 import com.optic.paqta.presentation.utils.ResultingActivityHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,20 +21,20 @@ import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
-class NewPostViewModel @Inject constructor(
+class NewBackpackViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val postsUseCases: PostsUseCases,
+    private val backpacksUseCases: BackpacksUseCases,
     private val authUseCases: AuthUseCases,
 ): ViewModel() {
 
-    var state by mutableStateOf(NewPostState())
+    var state by mutableStateOf(NewBackpackState())
 
     // FILE
     var file: File? = null
     val resultingActivityHandler = ResultingActivityHandler()
 
     // RESPONSE
-    var createPostResponse by mutableStateOf<Response<Boolean>?>(null)
+    var createBackpackResponse by mutableStateOf<Response<Boolean>?>(null)
         private set
 
     //USER SESSION
@@ -49,20 +48,20 @@ class NewPostViewModel @Inject constructor(
         CategoryRadioButton("Mobile", R.drawable.icon_mobile),
     )
 
-    fun createPost(post: Post) = viewModelScope.launch {
-        createPostResponse = Response.Loading
-        val result = postsUseCases.create(post, file!!)
-        createPostResponse = result
+    fun createBackpack(backpack: Backpack) = viewModelScope.launch {
+        createBackpackResponse = Response.Loading
+        val result = backpacksUseCases.create(backpack, file!!)
+        createBackpackResponse = result
     }
 
-    fun onNewPost() {
-        val post = Post(
+    fun onNewBackpack() {
+        val backpack = Backpack(
             name = state.name,
             description = state.description,
-            category = state.category,
+//            category = state.category,
             idUser = currentUser?.uid ?: ""
         )
-        createPost(post)
+        createBackpack(backpack)
     }
 
     fun pickImage() = viewModelScope.launch {
@@ -88,7 +87,7 @@ class NewPostViewModel @Inject constructor(
             description = "",
             image = ""
         )
-        createPostResponse = null
+        createBackpackResponse = null
     }
 
     fun onNameInput(name: String) {

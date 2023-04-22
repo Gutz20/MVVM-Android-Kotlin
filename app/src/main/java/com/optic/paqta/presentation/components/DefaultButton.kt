@@ -24,9 +24,10 @@ fun DefaultButton(
     onClick: () -> Unit,
     color: Color = Red500,
     icon: ImageVector = Icons.Default.ArrowForward,
-    enabled: Boolean = true
+    enabled: Boolean = true,
+    colorTexto: Color = Color.Black,
+    colorIcon: Color = Color.Black
 ) {
-
     Button(
         modifier = modifier,
         onClick = { onClick() },
@@ -35,10 +36,14 @@ fun DefaultButton(
     ) {
         Icon(
             imageVector = icon,
-            contentDescription = ""
+            contentDescription = "",
+            tint = colorIcon
         )
         Spacer(modifier = Modifier.width(10.dp))
-        Text(text = text)
+        Text(
+            text = text,
+            color = colorTexto
+        )
     }
 
 }

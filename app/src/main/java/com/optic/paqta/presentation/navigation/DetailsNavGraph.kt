@@ -3,6 +3,7 @@ package com.optic.paqta.presentation.navigation
 import androidx.navigation.*
 import androidx.navigation.compose.composable
 import com.optic.paqta.presentation.screens.detail_post.DetailPostScreen
+import com.optic.paqta.presentation.screens.new_backpack.NewBackpackScreen
 import com.optic.paqta.presentation.screens.new_post.NewPostScreen
 import com.optic.paqta.presentation.screens.profile_update.ProfileUpdateScreen
 import com.optic.paqta.presentation.screens.update_post.UpdatePostScreen
@@ -16,6 +17,10 @@ fun NavGraphBuilder.detailsNavGraph(navController: NavHostController) {
         
         composable(route = DetailsScreen.NewPost.route) {
             NewPostScreen(navController = navController)
+        }
+
+        composable(route = DetailsScreen.NewBackpack.route) {
+            NewBackpackScreen(navController = navController)
         }
         
         composable(
@@ -50,6 +55,7 @@ fun NavGraphBuilder.detailsNavGraph(navController: NavHostController) {
                 UpdatePostScreen(navController, post = it)
             }
         }
+
     }
 
 }
@@ -57,6 +63,7 @@ fun NavGraphBuilder.detailsNavGraph(navController: NavHostController) {
 sealed class DetailsScreen(val route: String) {
 
     object NewPost: DetailsScreen("posts/new")
+    object NewBackpack: DetailsScreen("backpacks/new")
     object ProfileUpdate: DetailsScreen("profile/update/{user}") {
         fun passUser(user: String) = "profile/update/$user"
     }
@@ -66,5 +73,6 @@ sealed class DetailsScreen(val route: String) {
     object UpdatePost: DetailsScreen("posts/update/{post}") {
         fun passPost(post: String) = "posts/update/$post"
     }
+
 
 }

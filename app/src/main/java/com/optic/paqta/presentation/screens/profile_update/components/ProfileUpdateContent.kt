@@ -48,8 +48,6 @@ fun ProfileUpdateContent(navController: NavHostController, viewModel: ProfileUpd
     Box(
         modifier = Modifier
             .fillMaxWidth(),
-
-
         ) {
         Box(
             modifier = Modifier

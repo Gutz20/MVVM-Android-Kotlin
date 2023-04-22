@@ -1,4 +1,4 @@
-package com.optic.paqta.presentation.screens.update_post
+package com.optic.paqta.presentation.screens.new_backpack
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Scaffold
@@ -8,31 +8,33 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.optic.paqta.presentation.components.DefaultButton
 import com.optic.paqta.presentation.components.DefaultTopBar
-import com.optic.paqta.presentation.screens.update_post.components.UpdatePost
-import com.optic.paqta.presentation.screens.update_post.components.UpdatePostContent
+import com.optic.paqta.presentation.screens.new_backpack.components.NewBackpack
+import com.optic.paqta.presentation.screens.new_backpack.components.NewBackpackContent
+import com.optic.paqta.presentation.screens.new_post.components.NewPost
+import com.optic.paqta.presentation.screens.new_post.components.NewPostContent
 
 @Composable
-fun UpdatePostScreen(navController: NavHostController, post: String, viewModel: UpdatePostViewModel = hiltViewModel()) {
+fun NewBackpackScreen(navController: NavHostController, viewModel: NewBackpackViewModel = hiltViewModel()) {
 
     Scaffold(
         topBar = {
              DefaultTopBar(
-                 title = "Editar Post",
+                 title = "Nuevo Backpack",
                  upAvailable = true,
                  navController = navController
              )
         },
         content = {
-            UpdatePostContent()
+            NewBackpackContent()
         },
         bottomBar = {
             DefaultButton(
                 modifier = Modifier.fillMaxWidth(),
-                text = "ACTUALIZAR",
-                onClick = { viewModel.onUpdatePost() }
+                text = "PUBLICAR",
+                onClick = { viewModel.onNewBackpack() }
             )
         }
     )
-    UpdatePost()
+    NewBackpack()
 
 }

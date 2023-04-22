@@ -1,4 +1,4 @@
-package com.optic.paqta.presentation.screens.my_posts
+package com.optic.paqta.presentation.screens.my_backpack
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.FloatingActionButton
@@ -12,24 +12,25 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.optic.paqta.presentation.components.DefaultTopBar
 import com.optic.paqta.presentation.navigation.DetailsScreen
+import com.optic.paqta.presentation.screens.my_backpack.components.GetBackpacksByIdUser
 import com.optic.paqta.presentation.screens.my_posts.components.GetPostsByIdUser
 
 @Composable
-fun MyPostsScreen(navController: NavHostController) {
+fun MyBackpacksScreen(navController: NavHostController) {
     
     Scaffold(
         topBar = {
                  DefaultTopBar(
-                     title = "Nuevo Item",
+                     title = "Nueva Mochila",
                  )
         },
         content = {
-           GetPostsByIdUser(navController = navController)
+           GetBackpacksByIdUser(navController = navController)
         },
         floatingActionButton = {
             FloatingActionButton(
                 modifier = Modifier.padding(bottom = 50.dp),
-                onClick = { navController.navigate(DetailsScreen.NewPost.route) }
+                onClick = { navController.navigate(DetailsScreen.NewBackpack.route) }
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,

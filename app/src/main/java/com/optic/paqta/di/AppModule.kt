@@ -8,17 +8,34 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.optic.paqta.core.Constants
+import com.optic.paqta.core.Constants.BACKPACKS
+import com.optic.paqta.core.Constants.ITEMS
 import com.optic.paqta.core.Constants.POSTS
 import com.optic.paqta.core.Constants.USERS
 import com.optic.paqta.data.repository.AuthRepositoryImpl
+import com.optic.paqta.data.repository.BackpacksRepositoryImpl
 import com.optic.paqta.data.repository.ItemsRepositoryImpl
 import com.optic.paqta.data.repository.PostsRepositoryImpl
 import com.optic.paqta.data.repository.UsersRepositoryImpl
 import com.optic.paqta.domain.repository.AuthRepository
+import com.optic.paqta.domain.repository.BackpacksRepository
 import com.optic.paqta.domain.repository.ItemsRepository
 import com.optic.paqta.domain.repository.PostsRepository
 import com.optic.paqta.domain.repository.UsersRepository
 import com.optic.paqta.domain.use_cases.auth.*
+import com.optic.paqta.domain.use_cases.backpacks.AddItemBackpack
+import com.optic.paqta.domain.use_cases.backpacks.BackpacksUseCases
+import com.optic.paqta.domain.use_cases.backpacks.CreateBackpack
+import com.optic.paqta.domain.use_cases.backpacks.DeleteBackpack
+import com.optic.paqta.domain.use_cases.backpacks.DeleteItemBackpack
+import com.optic.paqta.domain.use_cases.backpacks.GetBackpacks
+import com.optic.paqta.domain.use_cases.backpacks.GetBackpacksByIdUser
+import com.optic.paqta.domain.use_cases.backpacks.UpdateBackpack
+import com.optic.paqta.domain.use_cases.items.CreateItem
+import com.optic.paqta.domain.use_cases.items.DeleteItem
+import com.optic.paqta.domain.use_cases.items.GetItems
+import com.optic.paqta.domain.use_cases.items.ItemsUseCases
+import com.optic.paqta.domain.use_cases.items.UpdateItem
 import com.optic.paqta.domain.use_cases.posts.*
 import com.optic.paqta.domain.use_cases.users.*
 import dagger.Module
@@ -54,27 +71,25 @@ object AppModule {
     @Named(POSTS)
     fun providePostsRef(db: FirebaseFirestore): CollectionReference = db.collection(POSTS)
 
-    @Provides()
-    @Named(Constants.BACKPACKS)
+    @Provides
+    @Named(BACKPACKS)
     fun provideStorageBackpacksRef(storage: FirebaseStorage): StorageReference =
-        storage.reference.child(
-            Constants.BACKPACKS
-        )
+        storage.reference.child(BACKPACKS)
 
     @Provides
-    @Named(Constants.BACKPACKS)
-    fun provideBackpacksRef(db: FirebaseFirestore): CollectionReference = db.collection(Constants.BACKPACKS)
+    @Named(BACKPACKS)
+    fun provideBackpacksRef(db: FirebaseFirestore): CollectionReference = db.collection(BACKPACKS)
 
     @Provides()
-    @Named(Constants.ITEMS)
-    fun provideItemsRef(db: FirebaseFirestore): CollectionReference = db.collection(Constants.ITEMS)
-
-    @Provides()
-    @Named(Constants.ITEMS)
+    @Named(ITEMS)
     fun provideStorageItemsRef(storage: FirebaseStorage): StorageReference =
         storage.reference.child(
-            Constants.ITEMS
+            ITEMS
         )
+
+    @Provides()
+    @Named(ITEMS)
+    fun provideItemsRef(db: FirebaseFirestore): CollectionReference = db.collection(ITEMS)
 
     @Provides
     fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
@@ -87,6 +102,9 @@ object AppModule {
 
     @Provides
     fun providePostsRepository(impl: PostsRepositoryImpl): PostsRepository = impl
+
+    @Provides
+    fun provideBackpacksRepository(impl: BackpacksRepositoryImpl): BackpacksRepository = impl
 
     @Provides
     fun provideItemsRepository(impl: ItemsRepositoryImpl): ItemsRepository = impl
@@ -116,6 +134,25 @@ object AppModule {
         updatePost = UpdatePost(repository),
         likePost = LikePost(repository),
         deleteLikePost = DeleteLikePost(repository)
+    )
+
+    @Provides
+    fun provideBackpacksUseCases(repository: BackpacksRepository) = BackpacksUseCases(
+        create = CreateBackpack(repository),
+        deleteBackpack = DeleteBackpack(repository),
+        getBackpacks = GetBackpacks(repository),
+        updateBackpack = UpdateBackpack(repository),
+        addItemBackpack = AddItemBackpack(repository),
+        deleteItemBackpack = DeleteItemBackpack(repository),
+        getBackpacksByIdUser = GetBackpacksByIdUser(repository)
+    )
+
+    @Provides
+    fun provideItemsUseCases(repository: ItemsRepository) = ItemsUseCases(
+        createItem = CreateItem(repository),
+        deleteItem = DeleteItem(repository),
+        updateItem = UpdateItem(repository),
+        getItems = GetItems(repository)
     )
 
 }

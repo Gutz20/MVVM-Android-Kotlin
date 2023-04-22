@@ -1,4 +1,4 @@
-package com.optic.paqta.presentation.screens.posts.components
+package com.optic.paqta.presentation.screens.my_backpack.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -8,12 +8,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.optic.paqta.domain.model.Backpack
 import com.optic.paqta.domain.model.Post
 
 @Composable
-fun PostsContent(
+fun MyBackpacksContent(
     navController: NavHostController,
-    posts: List<Post>
+    backpacks: List<Backpack>
 ) {
     LazyColumn(
         modifier = Modifier
@@ -21,9 +22,9 @@ fun PostsContent(
             .padding(start = 20.dp, end = 20.dp, top = 20.dp, bottom = 55.dp)
     ) {
         items(
-            items = posts
-        ) { post ->
-            PostsCard(navController = navController, post = post)
+            items = backpacks
+        ) { backpack ->
+            MyBackpacksCard(navController = navController, backpack = backpack)
         }
     }
 }
