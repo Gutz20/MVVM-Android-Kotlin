@@ -49,9 +49,15 @@ fun LoginContent(navController: NavHostController, viewModel: LoginViewModel = h
                         ),
                     contentScale = ContentScale.Crop
                 )
+            Spacer(modifier = Modifier.height(10.dp))
+        Image(
+            painter = painterResource(id = R.drawable.logologin),
+            contentDescription = null,
+
+        )
         }
         Card(
-            modifier = Modifier.padding(start = 40.dp, end = 40.dp, top = 200.dp),
+            modifier = Modifier.padding(start = 40.dp, end = 40.dp, top = 300.dp),
             backgroundColor = Darkgray500
         ) {
 

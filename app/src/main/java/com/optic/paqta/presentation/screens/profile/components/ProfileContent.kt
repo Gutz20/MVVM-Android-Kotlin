@@ -50,7 +50,7 @@ fun ProfileContent(navController: NavHostController, viewModel: ProfileViewModel
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(200.dp),
-                painter = painterResource(id = R.drawable.background),
+                painter = painterResource(id = R.drawable.backgroundprofile),
                 contentDescription = "",
                 contentScale = ContentScale.Crop,
                 alpha = 0.6f
@@ -106,6 +106,7 @@ fun ProfileContent(navController: NavHostController, viewModel: ProfileViewModel
             text = "Editar datos",
             color = Color.White,
             icon = Icons.Default.Edit,
+            shape=CircleShape,
             onClick = {
                 navController.navigate(
                     route = DetailsScreen.ProfileUpdate.passUser(viewModel.userData.toJson())
