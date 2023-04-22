@@ -7,12 +7,15 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.optic.paqta.core.Constants
 import com.optic.paqta.core.Constants.POSTS
 import com.optic.paqta.core.Constants.USERS
 import com.optic.paqta.data.repository.AuthRepositoryImpl
+import com.optic.paqta.data.repository.ItemsRepositoryImpl
 import com.optic.paqta.data.repository.PostsRepositoryImpl
 import com.optic.paqta.data.repository.UsersRepositoryImpl
 import com.optic.paqta.domain.repository.AuthRepository
+import com.optic.paqta.domain.repository.ItemsRepository
 import com.optic.paqta.domain.repository.PostsRepository
 import com.optic.paqta.domain.repository.UsersRepository
 import com.optic.paqta.domain.use_cases.auth.*
@@ -27,7 +30,6 @@ import javax.inject.Named
 @InstallIn(SingletonComponent::class)
 @Module
 object AppModule {
-
     @Provides
     fun provideFirebaseFirestore(): FirebaseFirestore = Firebase.firestore
 
@@ -36,7 +38,8 @@ object AppModule {
 
     @Provides
     @Named(USERS)
-    fun provideStorageUsersRef(storage: FirebaseStorage): StorageReference = storage.reference.child(USERS)
+    fun provideStorageUsersRef(storage: FirebaseStorage): StorageReference =
+        storage.reference.child(USERS)
 
     @Provides
     @Named(USERS)
@@ -44,11 +47,34 @@ object AppModule {
 
     @Provides
     @Named(POSTS)
-    fun provideStoragePostsRef(storage: FirebaseStorage): StorageReference = storage.reference.child(POSTS)
+    fun provideStoragePostsRef(storage: FirebaseStorage): StorageReference =
+        storage.reference.child(POSTS)
 
     @Provides
     @Named(POSTS)
     fun providePostsRef(db: FirebaseFirestore): CollectionReference = db.collection(POSTS)
+
+    @Provides()
+    @Named(Constants.BACKPACKS)
+    fun provideStorageBackpacksRef(storage: FirebaseStorage): StorageReference =
+        storage.reference.child(
+            Constants.BACKPACKS
+        )
+
+    @Provides
+    @Named(Constants.BACKPACKS)
+    fun provideBackpacksRef(db: FirebaseFirestore): CollectionReference = db.collection(Constants.BACKPACKS)
+
+    @Provides()
+    @Named(Constants.ITEMS)
+    fun provideItemsRef(db: FirebaseFirestore): CollectionReference = db.collection(Constants.ITEMS)
+
+    @Provides()
+    @Named(Constants.ITEMS)
+    fun provideStorageItemsRef(storage: FirebaseStorage): StorageReference =
+        storage.reference.child(
+            Constants.ITEMS
+        )
 
     @Provides
     fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
@@ -61,6 +87,9 @@ object AppModule {
 
     @Provides
     fun providePostsRepository(impl: PostsRepositoryImpl): PostsRepository = impl
+
+    @Provides
+    fun provideItemsRepository(impl: ItemsRepositoryImpl): ItemsRepository = impl
 
     @Provides
     fun provideAuthUseCases(repository: AuthRepository) = AuthUseCases(

@@ -29,6 +29,8 @@ fun BottomBar(navController: NavHostController) {
         HomeBottomBarScreen.Posts,
         HomeBottomBarScreen.MyPosts,
         HomeBottomBarScreen.Profile,
+        HomeBottomBarScreen.Backpack,
+        HomeBottomBarScreen.Ubication
     )
     
     val navBackStackEntry by navController.currentBackStackEntryAsState()

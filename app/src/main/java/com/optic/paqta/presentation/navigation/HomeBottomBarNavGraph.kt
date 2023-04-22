@@ -4,14 +4,17 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.outlined.List
+import androidx.compose.material.icons.outlined.LocationOn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.optic.paqta.presentation.screens.backpack.BackpackScreen
 import com.optic.paqta.presentation.screens.my_posts.MyPostsScreen
 import com.optic.paqta.presentation.screens.posts.PostsScreen
 import com.optic.paqta.presentation.screens.profile.ProfileScreen
+import com.optic.paqta.presentation.screens.ubication.UbicationScreen
 
 @Composable
 fun HomeBottomBarNavGraph(navController: NavHostController) {
@@ -28,6 +31,14 @@ fun HomeBottomBarNavGraph(navController: NavHostController) {
 
         composable(route = HomeBottomBarScreen.MyPosts.route) {
             MyPostsScreen(navController)
+        }
+
+        composable(route = HomeBottomBarScreen.Ubication.route) {
+            UbicationScreen(navController)
+        }
+
+        composable(route = HomeBottomBarScreen.Backpack.route) {
+            BackpackScreen(navController)
         }
 
         composable(route = HomeBottomBarScreen.Profile.route) {
@@ -56,6 +67,18 @@ sealed class HomeBottomBarScreen(
     object MyPosts: HomeBottomBarScreen(
         route = "my_posts",
         title = "Mis Posts",
+        icon = Icons.Outlined.List
+    )
+
+    object Ubication: HomeBottomBarScreen(
+        route = "ubication",
+        title = "Mapa",
+        icon = Icons.Outlined.LocationOn
+    )
+
+    object Backpack: HomeBottomBarScreen(
+        route = "backpack",
+        title = "Mochila",
         icon = Icons.Outlined.List
     )
 
