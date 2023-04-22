@@ -36,85 +36,84 @@ fun LoginContent(navController: NavHostController, viewModel: LoginViewModel = h
         modifier = Modifier
             .fillMaxWidth(),
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.bck),
+            contentDescription = null,
+            modifier = Modifier
+                .fillMaxSize()
+                .blur(
+                    radiusX = 10.dp, radiusY = 10.dp, edgeTreatment = BlurredEdgeTreatment(
+                        RoundedCornerShape(8.dp)
+                    )
+                ),
+            contentScale = ContentScale.Crop
+        )
+    }
+    Card(
+        modifier = Modifier.padding(start = 40.dp, end = 40.dp, top = 200.dp),
+        backgroundColor = Darkgray500
+    ) {
 
-
-                Image(
-                    painter = painterResource(id = R.drawable.bck),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .blur(radiusX = 10.dp, radiusY=10.dp, edgeTreatment = BlurredEdgeTreatment(
-                            RoundedCornerShape(8.dp)
-                        )
-                        ),
-                    contentScale = ContentScale.Crop
-                )
-        }
-        Card(
-            modifier = Modifier.padding(start = 40.dp, end = 40.dp, top = 200.dp),
-            backgroundColor = Darkgray500
+        Column(
+            modifier = Modifier.padding(horizontal = 20.dp)
         ) {
+            Text(
+                modifier = Modifier
+                    .padding(
+                        top = 40.dp,
+                        bottom = 0.dp,
+                        start = 0.dp,
+                        end = 0.dp
+                    ),
+                text = "LOGIN",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(
+                text = "Por favor inicia sesion para continuar",
+                fontSize = 12.sp,
+                color = Color.Gray
+            )
+            DefaultTextField(
+                modifier = Modifier.padding(top = 25.dp),
+                value = state.email,
+                onValueChange = { viewModel.onEmailInput(it) },
+                label = "Correo electronico",
+                icon = Icons.Default.Email,
+                keyboardType = KeyboardType.Email,
+                errorMsg = viewModel.emailErrMsg,
+                validateField = {
+                    viewModel.validateEmail()
+                }
+            )
+            DefaultTextField(
+                modifier = Modifier.padding(top = 0.dp),
+                value = state.password,
+                onValueChange = { viewModel.onPasswordInput(it) },
+                label = "Contraseña",
+                icon = Icons.Default.Lock,
+                hideText = true,
+                errorMsg = viewModel.passwordErrMsg,
+                validateField = {
+                    viewModel.validatePassword()
+                }
+            )
 
-            Column(
-                modifier = Modifier.padding(horizontal = 20.dp)
-            ) {
-                Text(
-                    modifier = Modifier
-                        .padding(
-                            top = 40.dp,
-                            bottom = 0.dp,
-                            start = 0.dp,
-                            end = 0.dp
-                        ),
-                    text = "LOGIN",
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                Spacer(modifier = Modifier.height(10.dp))
-                Text(
-                    text = "Por favor inicia sesion para continuar",
-                    fontSize = 12.sp,
-                    color = Color.Gray
-                )
-                DefaultTextField(
-                    modifier = Modifier.padding(top = 25.dp),
-                    value = state.email,
-                    onValueChange = { viewModel.onEmailInput(it) },
-                    label = "Correo electronico",
-                    icon = Icons.Default.Email,
-                    keyboardType = KeyboardType.Email,
-                    errorMsg = viewModel.emailErrMsg,
-                    validateField = {
-                        viewModel.validateEmail()
-                    }
-                )
-                DefaultTextField(
-                    modifier = Modifier.padding(top = 0.dp),
-                    value = state.password,
-                    onValueChange = { viewModel.onPasswordInput(it) },
-                    label = "Contraseña",
-                    icon = Icons.Default.Lock,
-                    hideText = true,
-                    errorMsg = viewModel.passwordErrMsg,
-                    validateField = {
-                        viewModel.validatePassword()
-                    }
-                )
+            DefaultButton(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 30.dp),
+                text = "INICIAR SESION",
+                onClick = {
+                    viewModel.login()
+                },
+                enabled = viewModel.isEnabledLoginButton
+            )
 
-                DefaultButton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 30.dp),
-                    text = "INICIAR SESION",
-                    onClick = {
-                        viewModel.login()
-                    },
-                    enabled = viewModel.isEnabledLoginButton
-                )
-
-            }
         }
     }
+}
 
 
 

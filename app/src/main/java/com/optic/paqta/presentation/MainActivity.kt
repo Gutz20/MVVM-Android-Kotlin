@@ -8,6 +8,8 @@ import androidx.compose.material.*
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.optic.paqta.presentation.navigation.RootNavGraph
 import com.optic.paqta.presentation.screens.login.LoginScreen
 import com.optic.paqta.presentation.ui.theme.PaqtaTheme
@@ -15,7 +17,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    
+
+//    private lateinit var ubicationProvider: FusedLocationProviderClient
+
     private lateinit var navController: NavHostController
     
     override fun onCreate(savedInstanceState: Bundle?) {
