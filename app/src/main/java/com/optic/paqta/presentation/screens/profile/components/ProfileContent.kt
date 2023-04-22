@@ -106,7 +106,6 @@ fun ProfileContent(navController: NavHostController, viewModel: ProfileViewModel
             text = "Editar datos",
             color = Color.White,
             icon = Icons.Default.Edit,
-            shape=CircleShape,
             onClick = {
                 navController.navigate(
                     route = DetailsScreen.ProfileUpdate.passUser(viewModel.userData.toJson())
