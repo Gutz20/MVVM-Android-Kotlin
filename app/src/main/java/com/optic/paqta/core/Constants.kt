@@ -8,5 +8,7 @@ object Constants {
     //    OPCIONAL
     const val BACKPACKS = "Backpack"
     const val ITEMS = "Items"
+    const val CATEGORIES = "Categories"
+    const val CONTENT = "Contents"
 
 }

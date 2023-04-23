@@ -2,6 +2,9 @@ package com.optic.paqta.presentation.navigation
 
 import androidx.navigation.*
 import androidx.navigation.compose.composable
+import com.optic.paqta.domain.model.Category
+import com.optic.paqta.presentation.screens.detail_backpack.DetailBackpackScreen
+import com.optic.paqta.presentation.screens.detail_category_backpack.DetailCategoryBakpackScreen
 import com.optic.paqta.presentation.screens.detail_post.DetailPostScreen
 import com.optic.paqta.presentation.screens.new_backpack.NewBackpackScreen
 import com.optic.paqta.presentation.screens.new_post.NewPostScreen
@@ -46,6 +49,28 @@ fun NavGraphBuilder.detailsNavGraph(navController: NavHostController) {
         }
 
         composable(
+            route = DetailsScreen.DetailCategory.route,
+            arguments = listOf(navArgument("category") {
+                type = NavType.StringType
+            })
+        ) {
+            it.arguments?.getString("category")?.let {
+                DetailCategoryBakpackScreen(navController, category = it)
+            }
+        }
+
+        composable(
+            route = DetailsScreen.DetailBackpack.route,
+            arguments = listOf(navArgument("backpack"){
+                type = NavType.StringType
+            })
+        ) {
+            it.arguments?.getString("backpack")?.let {
+                DetailBackpackScreen(navController, backpack = it)
+            }
+        }
+
+        composable(
             route = DetailsScreen.UpdatePost.route,
             arguments = listOf(navArgument("post"){
                 type = NavType.StringType
@@ -61,7 +86,6 @@ fun NavGraphBuilder.detailsNavGraph(navController: NavHostController) {
 }
 
 sealed class DetailsScreen(val route: String) {
-
     object NewPost: DetailsScreen("posts/new")
     object NewBackpack: DetailsScreen("backpacks/new")
     object ProfileUpdate: DetailsScreen("profile/update/{user}") {
@@ -70,6 +94,16 @@ sealed class DetailsScreen(val route: String) {
     object DetailPost: DetailsScreen("posts/detail/{post}") {
         fun passPost(post: String) = "posts/detail/$post"
     }
+
+    object DetailBackpack: DetailsScreen("backpacks/detail/{backpack}") {
+        fun passBackpack(backpack: String) = "backpacks/detail/$backpack"
+    }
+
+    object DetailCategory: DetailsScreen("categories/detail/{category}") {
+        fun passCategory(category: String) = "categories/detail/$category"
+    }
+
+
     object UpdatePost: DetailsScreen("posts/update/{post}") {
         fun passPost(post: String) = "posts/update/$post"
     }

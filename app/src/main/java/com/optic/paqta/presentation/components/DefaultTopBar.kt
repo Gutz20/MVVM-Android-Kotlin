@@ -19,6 +19,7 @@ fun DefaultTopBar(
     upAvailable: Boolean = false,
     navController: NavHostController? = null,
     otherIconNavigate: Boolean = false,
+    actionButton: () -> Unit = {},
     iconButton: ImageVector = Icons.Default.ArrowBack,
 ) {
 
@@ -41,7 +42,7 @@ fun DefaultTopBar(
                 }
             }
             if (otherIconNavigate) {
-                IconButton(onClick = { navController?.popBackStack() }) {
+                IconButton(onClick = { actionButton() }) {
                     Icon(
                         imageVector = iconButton,
                         contentDescription = "" ,

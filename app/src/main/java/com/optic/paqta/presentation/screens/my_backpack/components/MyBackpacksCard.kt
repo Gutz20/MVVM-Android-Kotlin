@@ -32,12 +32,10 @@ fun MyBackpacksCard(navController: NavHostController, backpack: Backpack, viewMo
         modifier = Modifier
             .padding(top = 0.dp, bottom = 15.dp)
             .clickable {
-                navController.navigate(route = DetailsScreen.DetailPost.passPost(backpack.toJson()))
+                navController.navigate(route = DetailsScreen.DetailBackpack.passBackpack(backpack.toJson()))
             },
         elevation = 4.dp,
-        shape = RoundedCornerShape(20.dp),
         contentColor = Color.White,
-
     ) {
         Column() {
             AsyncImage(
