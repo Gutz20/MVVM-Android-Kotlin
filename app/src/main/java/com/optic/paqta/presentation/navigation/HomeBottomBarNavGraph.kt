@@ -59,7 +59,7 @@ sealed class HomeBottomBarScreen(
 
     object Posts: HomeBottomBarScreen(
         route = "posts",
-        title = "Posts",
+        title = "Tips",
         icon = Icons.Default.List
     )
 
