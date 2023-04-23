@@ -45,12 +45,11 @@ fun ProfileContent(navController: NavHostController, viewModel: ProfileViewModel
     ) {
 
         Box() {
-
             Image(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(200.dp),
-                painter = painterResource(id = R.drawable.backgroundprofile),
+                    .height(270.dp),
+                painter = painterResource(id = R.drawable.fondeditlogin),
                 contentDescription = "",
                 contentScale = ContentScale.Crop,
                 alpha = 0.6f
@@ -59,9 +58,11 @@ fun ProfileContent(navController: NavHostController, viewModel: ProfileViewModel
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+
+
                 Spacer(modifier = Modifier.height(30.dp))
                 Text(
-                    text = "Bienvenido",
+                    text = "Usuario",
                     fontSize = 30.sp,
                     fontWeight = FontWeight.Bold
                 )
@@ -79,7 +80,7 @@ fun ProfileContent(navController: NavHostController, viewModel: ProfileViewModel
                 else {
                     Image(
                         modifier = Modifier.size(115.dp),
-                        painter = painterResource(id = R.drawable.user),
+                        painter = painterResource(id = R.drawable.familia),
                         contentDescription = ""
                     )
                 }

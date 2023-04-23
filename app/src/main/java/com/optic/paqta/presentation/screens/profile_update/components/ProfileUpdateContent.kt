@@ -29,8 +29,9 @@ import com.optic.paqta.presentation.components.DefaultButton
 import com.optic.paqta.presentation.components.DefaultTextField
 import com.optic.paqta.presentation.components.DialogCapturePicture
 import com.optic.paqta.presentation.screens.profile_update.ProfileUpdateViewModel
+import com.optic.paqta.presentation.ui.theme.Black200
 import com.optic.paqta.presentation.ui.theme.Darkgray500
-import com.optic.paqta.presentation.ui.theme.Red500
+import com.optic.paqta.presentation.ui.theme.Yellow100
 
 
 @Composable
@@ -51,12 +52,15 @@ fun ProfileUpdateContent(navController: NavHostController, viewModel: ProfileUpd
 
 
         ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(230.dp)
-                .background(Red500),
-        ) {
+            Image(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(750.dp),
+                painter = painterResource(id = R.drawable.fondoedituser),
+                contentDescription = "",
+                contentScale = ContentScale.Crop,
+                alpha = 0.6f
+            )
             Column(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -81,21 +85,20 @@ fun ProfileUpdateContent(navController: NavHostController, viewModel: ProfileUpd
                 else {
                     Image(
                         modifier = Modifier
-                            .height(120.dp)
+                            .height(130.dp)
+
                             .clickable {
                                 dialogState.value = true
                             },
-                        painter = painterResource(id = R.drawable.user),
+                        painter = painterResource(id = R.drawable.userupdate),
                         contentDescription = "Imagen de usuario"
                     )
                 }
-
             }
-
         }
         Card(
             modifier = Modifier.padding(start = 40.dp, end = 40.dp, top = 170.dp),
-            backgroundColor = Darkgray500
+            backgroundColor = Black200
         ) {
 
             Column(
@@ -139,5 +142,3 @@ fun ProfileUpdateContent(navController: NavHostController, viewModel: ProfileUpd
             }
         }
     }
-
-}

@@ -25,7 +25,9 @@ import com.optic.paqta.R
 import com.optic.paqta.presentation.components.DefaultButton
 import com.optic.paqta.presentation.components.DefaultTextField
 import com.optic.paqta.presentation.screens.login.LoginViewModel
+import com.optic.paqta.presentation.ui.theme.Black200
 import com.optic.paqta.presentation.ui.theme.Darkgray500
+import com.optic.paqta.presentation.ui.theme.Yellow100
 
 @Composable
 fun LoginContent(navController: NavHostController, viewModel: LoginViewModel = hiltViewModel()) {
@@ -39,7 +41,7 @@ fun LoginContent(navController: NavHostController, viewModel: LoginViewModel = h
 
 
         Image(
-            painter = painterResource(id = R.drawable.bck),
+            painter = painterResource(id = R.drawable.logofond),
             contentDescription = null,
             modifier = Modifier
                 .fillMaxSize()
@@ -52,14 +54,14 @@ fun LoginContent(navController: NavHostController, viewModel: LoginViewModel = h
         )
         Spacer(modifier = Modifier.height(10.dp))
         Image(
+
             painter = painterResource(id = R.drawable.logologin),
             contentDescription = null,
-
             )
     }
     Card(
-        modifier = Modifier.padding(start = 40.dp, end = 40.dp, top = 300.dp),
-        backgroundColor = Darkgray500
+        modifier = Modifier.padding(start = 40.dp, end = 40.dp, top = 275.dp),
+        backgroundColor = Black200
     ) {
 
         Column(
@@ -112,11 +114,14 @@ fun LoginContent(navController: NavHostController, viewModel: LoginViewModel = h
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 30.dp),
+
                 text = "INICIAR SESION",
+
                 onClick = {
                     viewModel.login()
                 },
-                enabled = viewModel.isEnabledLoginButton
+                enabled = viewModel.isEnabledLoginButton,
+
             )
 
         }

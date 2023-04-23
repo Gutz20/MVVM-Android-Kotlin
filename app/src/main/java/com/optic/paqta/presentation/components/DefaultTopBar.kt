@@ -12,6 +12,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.optic.paqta.presentation.ui.theme.Red500
 import com.optic.paqta.presentation.ui.theme.Red700
+import com.optic.paqta.presentation.ui.theme.Yellow100
+import com.optic.paqta.presentation.ui.theme.Yellow200
 
 @Composable
 fun DefaultTopBar(
@@ -27,7 +29,7 @@ fun DefaultTopBar(
                 fontSize = 19.sp
             )
         },
-        backgroundColor = Red500,
+        backgroundColor = Yellow100,
         navigationIcon = {
             if (upAvailable) {
                 IconButton(onClick = { navController?.popBackStack() }) {

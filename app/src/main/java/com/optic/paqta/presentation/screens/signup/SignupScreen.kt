@@ -22,7 +22,7 @@ fun SignupScreen(navController: NavHostController) {
     Scaffold(
         topBar = {
              DefaultTopBar(
-                 title = "Nuevo usuario",
+                 title = "¿Eres Nuevo?",
                  upAvailable = true,
                  navController = navController
              )

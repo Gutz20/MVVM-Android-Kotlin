@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.optic.paqta.presentation.navigation.AuthScreen
+import com.optic.paqta.presentation.ui.theme.*
 
 @Composable
 fun LoginBottomBar(navController: NavHostController) {
@@ -25,7 +26,7 @@ fun LoginBottomBar(navController: NavHostController) {
         Text(
             text = "¿No tienes cuenta?",
             fontSize = 14.sp,
-            color = Color.Gray
+            color = Color.White
         )
         Spacer(modifier = Modifier.width(7.dp))
         Text(
@@ -33,7 +34,7 @@ fun LoginBottomBar(navController: NavHostController) {
                 navController.navigate(route = AuthScreen.Signup.route)
             },
             text = "REGISTRATE AQUI",
-            color = Color.Red,
+            color = Yellow100,
             fontSize = 14.sp,
             fontWeight = FontWeight.Bold
         )
