@@ -11,13 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.optic.paqta.presentation.ui.theme.Red500
-<<<<<<< HEAD
-import com.optic.paqta.presentation.ui.theme.Red700
 import com.optic.paqta.presentation.ui.theme.Yellow100
-import com.optic.paqta.presentation.ui.theme.Yellow200
-=======
->>>>>>> 9f98769d38adb8ad1742bd7c5ff81efd227aedb3
 
 @Composable
 fun DefaultTopBar(
