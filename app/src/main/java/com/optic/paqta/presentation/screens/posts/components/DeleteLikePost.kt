@@ -26,6 +26,7 @@ fun DeleteLikePost(viewModel: PostsViewModel = hiltViewModel()) {
             Toast.makeText(LocalContext.current, response.exception?.message ?: "Error desconido", Toast.LENGTH_LONG).show()
         }
 
+        else -> {}
     }
 
 }

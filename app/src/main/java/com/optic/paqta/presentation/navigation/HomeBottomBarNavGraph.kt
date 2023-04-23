@@ -3,15 +3,21 @@ package com.optic.paqta.presentation.navigation
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.outlined.Build
+import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.List
+import androidx.compose.material.icons.outlined.LocationOn
+import androidx.compose.material.icons.outlined.Place
+import androidx.compose.material.icons.outlined.ThumbUp
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.optic.paqta.presentation.screens.my_posts.MyPostsScreen
+import com.optic.paqta.presentation.screens.my_backpack.MyBackpacksScreen
 import com.optic.paqta.presentation.screens.posts.PostsScreen
 import com.optic.paqta.presentation.screens.profile.ProfileScreen
+import com.optic.paqta.presentation.screens.ubication.UbicationScreen
 
 @Composable
 fun HomeBottomBarNavGraph(navController: NavHostController) {
@@ -26,8 +32,12 @@ fun HomeBottomBarNavGraph(navController: NavHostController) {
             PostsScreen(navController)
         }
 
-        composable(route = HomeBottomBarScreen.MyPosts.route) {
-            MyPostsScreen(navController)
+        composable(route = HomeBottomBarScreen.Ubication.route) {
+            UbicationScreen(navController)
+        }
+
+        composable(route = HomeBottomBarScreen.Backpacks.route) {
+            MyBackpacksScreen(navController)
         }
 
         composable(route = HomeBottomBarScreen.Profile.route) {
@@ -53,10 +63,16 @@ sealed class HomeBottomBarScreen(
         icon = Icons.Default.List
     )
 
-    object MyPosts: HomeBottomBarScreen(
-        route = "my_posts",
-        title = "Mis Posts",
-        icon = Icons.Outlined.List
+    object Ubication: HomeBottomBarScreen(
+        route = "ubication",
+        title = "Mapa",
+        icon = Icons.Outlined.Place
+    )
+
+    object Backpacks: HomeBottomBarScreen(
+        route = "backpacks",
+        title = "Mochila",
+        icon = Icons.Outlined.Home
     )
 
     object Profile: HomeBottomBarScreen(

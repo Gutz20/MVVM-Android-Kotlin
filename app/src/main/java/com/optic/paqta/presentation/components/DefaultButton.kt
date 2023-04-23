@@ -26,11 +26,15 @@ fun DefaultButton(
     color: Color = Yellow100,
     icon: ImageVector = Icons.Default.ArrowForward,
     enabled: Boolean = true,
+<<<<<<< HEAD
     colortexto: Color = Color.Black,
     coloricon: Color = Color.Black
 
+=======
+    colorTexto: Color = Color.Black,
+    colorIcon: Color = Color.Black
+>>>>>>> 9f98769d38adb8ad1742bd7c5ff81efd227aedb3
 ) {
-
     Button(
         modifier = modifier,
         onClick = { onClick() },
@@ -40,6 +44,7 @@ fun DefaultButton(
         Icon(
             imageVector = icon,
             contentDescription = "",
+<<<<<<< HEAD
             tint = coloricon
         )
         Spacer(modifier = Modifier.width(10.dp))
@@ -48,6 +53,15 @@ fun DefaultButton(
             text = text
         )
 
+=======
+            tint = colorIcon
+        )
+        Spacer(modifier = Modifier.width(10.dp))
+        Text(
+            text = text,
+            color = colorTexto
+        )
+>>>>>>> 9f98769d38adb8ad1742bd7c5ff81efd227aedb3
     }
 
 }

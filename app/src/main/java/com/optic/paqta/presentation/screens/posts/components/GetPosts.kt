@@ -13,7 +13,6 @@ import com.optic.paqta.presentation.screens.posts.PostsViewModel
 
 @Composable
 fun GetPosts(navController: NavHostController, viewModel: PostsViewModel = hiltViewModel()) {
-
     when(val response = viewModel.postsResponse) {
         // MOSTRAR QUE SE ESTA REALIZANDO LA PETICION Y TODAVIA ESTA EN PROCESO
         Response.Loading -> {
@@ -25,7 +24,6 @@ fun GetPosts(navController: NavHostController, viewModel: PostsViewModel = hiltV
         is Response.Failure -> {
             Toast.makeText(LocalContext.current, response.exception?.message ?: "Error desconido", Toast.LENGTH_LONG).show()
         }
-
+        else -> {}
     }
-
 }

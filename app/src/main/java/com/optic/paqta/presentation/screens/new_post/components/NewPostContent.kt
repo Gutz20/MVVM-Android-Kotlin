@@ -157,7 +157,7 @@ fun NewPostContent(viewModel: NewPostViewModel = hiltViewModel()) {
                         selected = (option.category == state.category),
                         onClick = { viewModel.onCategoryInput(option.category) }
                     )
-                    Row() {
+                    Row {
                         Text(
                             modifier = Modifier
                                 .width(105.dp)

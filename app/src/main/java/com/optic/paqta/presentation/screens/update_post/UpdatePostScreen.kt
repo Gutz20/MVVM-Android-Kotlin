@@ -8,8 +8,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.optic.paqta.presentation.components.DefaultButton
 import com.optic.paqta.presentation.components.DefaultTopBar
-import com.optic.paqta.presentation.screens.new_post.components.NewPost
-import com.optic.paqta.presentation.screens.new_post.components.NewPostContent
 import com.optic.paqta.presentation.screens.update_post.components.UpdatePost
 import com.optic.paqta.presentation.screens.update_post.components.UpdatePostContent
 

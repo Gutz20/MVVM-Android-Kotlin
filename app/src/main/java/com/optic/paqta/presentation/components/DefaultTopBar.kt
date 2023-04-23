@@ -8,18 +8,25 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.optic.paqta.presentation.ui.theme.Red500
+<<<<<<< HEAD
 import com.optic.paqta.presentation.ui.theme.Red700
 import com.optic.paqta.presentation.ui.theme.Yellow100
 import com.optic.paqta.presentation.ui.theme.Yellow200
+=======
+>>>>>>> 9f98769d38adb8ad1742bd7c5ff81efd227aedb3
 
 @Composable
 fun DefaultTopBar(
     title: String,
     upAvailable: Boolean = false,
-    navController: NavHostController? = null
+    navController: NavHostController? = null,
+    otherIconNavigate: Boolean = false,
+    actionButton: () -> Unit = {},
+    iconButton: ImageVector = Icons.Default.ArrowBack,
 ) {
 
     TopAppBar(
@@ -35,6 +42,15 @@ fun DefaultTopBar(
                 IconButton(onClick = { navController?.popBackStack() }) {
                     Icon(
                         imageVector = Icons.Default.ArrowBack,
+                        contentDescription = "" ,
+                        tint = Color.White
+                    )
+                }
+            }
+            if (otherIconNavigate) {
+                IconButton(onClick = { actionButton() }) {
+                    Icon(
+                        imageVector = iconButton,
                         contentDescription = "" ,
                         tint = Color.White
                     )
