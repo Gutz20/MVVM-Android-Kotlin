@@ -113,6 +113,7 @@ fun ProfileContent(navController: NavHostController, viewModel: ProfileViewModel
                 )
             }
         )
+
         Spacer(modifier = Modifier.height(10.dp))
         DefaultButton(
             modifier = Modifier.width(250.dp),

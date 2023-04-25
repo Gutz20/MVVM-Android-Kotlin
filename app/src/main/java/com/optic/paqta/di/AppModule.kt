@@ -11,6 +11,7 @@ import com.optic.paqta.core.Constants
 import com.optic.paqta.core.Constants.BACKPACKS
 import com.optic.paqta.core.Constants.CATEGORIES
 import com.optic.paqta.core.Constants.ITEMS
+import com.optic.paqta.core.Constants.MEMBERS
 import com.optic.paqta.core.Constants.POSTS
 import com.optic.paqta.core.Constants.USERS
 import com.optic.paqta.data.repository.AuthRepositoryImpl
@@ -88,6 +89,15 @@ object AppModule {
     fun provideBackpacksRef(db: FirebaseFirestore): CollectionReference = db.collection(BACKPACKS)
 
     @Provides
+    @Named(MEMBERS)
+    fun provideStorageMembersRef(storage: FirebaseStorage): StorageReference =
+        storage.reference.child(MEMBERS)
+
+    @Provides
+    @Named(MEMBERS)
+    fun provideMembersRef(db: FirebaseFirestore): CollectionReference = db.collection(MEMBERS)
+
+    @Provides
     fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
 
     @Provides
@@ -105,6 +115,9 @@ object AppModule {
     @Provides
     fun provideBackpacksRepository(impl: BackpacksRepositoryImpl): BackpacksRepository = impl
 
+//    @Provides
+//    fun provideMembersRepository(impl: ): CategoriesRepository = impl
+
     @Provides
     fun provideAuthUseCases(repository: AuthRepository) = AuthUseCases(
         getCurrentUser = GetCurrentUser(repository),
@@ -118,7 +131,8 @@ object AppModule {
         create = Create(repository),
         getUserById = GetUserById(repository),
         update = Update(repository),
-        saveImage = SaveImage(repository)
+        saveImage = SaveImage(repository),
+        addMember = AddMember(repository)
     )
 
     @Provides

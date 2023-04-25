@@ -1,4 +1,4 @@
-package com.optic.paqta.presentation.screens.signup.components
+package com.optic.paqta.presentation.screens.add_family.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

@@ -1,4 +1,4 @@
-package com.optic.paqta.presentation.screens.signup
+package com.optic.paqta.presentation.screens.add_family
 
 data class SignupState(
     val username: String = "",

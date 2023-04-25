@@ -7,6 +7,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
 import com.optic.paqta.core.Constants
 import com.optic.paqta.core.Constants.USERS
+import com.optic.paqta.domain.model.Member
 import com.optic.paqta.domain.model.Response
 import com.optic.paqta.domain.model.User
 import com.optic.paqta.domain.repository.UsersRepository
@@ -70,5 +71,22 @@ class UsersRepositoryImpl @Inject constructor(
             snapshotListener.remove()
         }
     }
+
+    // Falta implementar
+    override suspend fun addMember(idUser: String, datos: ArrayList<Member>): Response<Boolean> {
+        return try {
+            val snapshotListener = usersRef.document(idUser).addSnapshotListener { snapshot, e ->
+                val user = snapshot?.toObject(User::class.java) ?: User()
+//                user.members.addAll(datos)
+            }
+            Response.Success(true)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Response.Failure(e)
+        }
+    }
+
+
+
 
 }

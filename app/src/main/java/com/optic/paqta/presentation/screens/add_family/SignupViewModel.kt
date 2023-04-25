@@ -1,4 +1,4 @@
-package com.optic.paqta.presentation.screens.signup
+package com.optic.paqta.presentation.screens.add_family
 
 import android.util.Patterns
 import androidx.compose.runtime.MutableState

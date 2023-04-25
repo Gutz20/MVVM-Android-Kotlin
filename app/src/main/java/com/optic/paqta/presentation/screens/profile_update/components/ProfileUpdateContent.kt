@@ -10,6 +10,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -28,9 +29,11 @@ import com.optic.paqta.R
 import com.optic.paqta.presentation.components.DefaultButton
 import com.optic.paqta.presentation.components.DefaultTextField
 import com.optic.paqta.presentation.components.DialogCapturePicture
+import com.optic.paqta.presentation.navigation.DetailsScreen
 import com.optic.paqta.presentation.screens.profile_update.ProfileUpdateViewModel
 import com.optic.paqta.presentation.ui.theme.Black200
 import com.optic.paqta.presentation.ui.theme.Darkgray500
+import com.optic.paqta.presentation.ui.theme.Red500
 import com.optic.paqta.presentation.ui.theme.Yellow100
 
 
@@ -133,9 +136,19 @@ fun ProfileUpdateContent(navController: NavHostController, viewModel: ProfileUpd
                 DefaultButton(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 20.dp, bottom = 40.dp),
+                        .padding(top = 20.dp, bottom = 5.dp),
                     text = "ACTUALIZAR DATOS",
                     onClick = { viewModel.saveImage() },
+                )
+                DefaultButton(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 10.dp, bottom = 40.dp),
+                    text = "AGREGE FAMILIAR",
+                    color = Red500,
+                    onClick = {
+                        // AGREGAR NAVIGATION
+                    }
                 )
             }
         }
