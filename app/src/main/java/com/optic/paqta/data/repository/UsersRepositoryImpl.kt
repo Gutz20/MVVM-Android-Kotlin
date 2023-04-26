@@ -2,10 +2,7 @@ package com.optic.paqta.data.repository
 
 import android.net.Uri
 import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
-import com.optic.paqta.core.Constants
 import com.optic.paqta.core.Constants.USERS
 import com.optic.paqta.domain.model.Member
 import com.optic.paqta.domain.model.Response

@@ -17,11 +17,13 @@ import com.optic.paqta.core.Constants.USERS
 import com.optic.paqta.data.repository.AuthRepositoryImpl
 import com.optic.paqta.data.repository.BackpacksRepositoryImpl
 import com.optic.paqta.data.repository.CategoriesRepositoryImpl
+import com.optic.paqta.data.repository.MembersRepositoryImpl
 import com.optic.paqta.data.repository.PostsRepositoryImpl
 import com.optic.paqta.data.repository.UsersRepositoryImpl
 import com.optic.paqta.domain.repository.AuthRepository
 import com.optic.paqta.domain.repository.BackpacksRepository
 import com.optic.paqta.domain.repository.CategoriesRepository
+import com.optic.paqta.domain.repository.MembersRepository
 import com.optic.paqta.domain.repository.PostsRepository
 import com.optic.paqta.domain.repository.UsersRepository
 import com.optic.paqta.domain.use_cases.auth.*
@@ -35,6 +37,8 @@ import com.optic.paqta.domain.use_cases.backpacks.GetBackpacksByIdUser
 import com.optic.paqta.domain.use_cases.backpacks.UpdateBackpack
 import com.optic.paqta.domain.use_cases.categories.CategoriesUseCases
 import com.optic.paqta.domain.use_cases.categories.GetCategories
+import com.optic.paqta.domain.use_cases.members.CreateMember
+import com.optic.paqta.domain.use_cases.members.MembersUseCases
 import com.optic.paqta.domain.use_cases.posts.*
 import com.optic.paqta.domain.use_cases.users.*
 import dagger.Module
@@ -115,8 +119,8 @@ object AppModule {
     @Provides
     fun provideBackpacksRepository(impl: BackpacksRepositoryImpl): BackpacksRepository = impl
 
-//    @Provides
-//    fun provideMembersRepository(impl: ): CategoriesRepository = impl
+    @Provides
+    fun provideMembersRepository(impl: MembersRepositoryImpl): MembersRepository = impl
 
     @Provides
     fun provideAuthUseCases(repository: AuthRepository) = AuthUseCases(
@@ -147,8 +151,14 @@ object AppModule {
     )
 
     @Provides
-    fun provideCategoriesUseCases(repository: CategoriesRepository) = CategoriesUseCases (
+    fun provideCategoriesUseCases(repository: CategoriesRepository) = CategoriesUseCases(
         getCategories = GetCategories(repository)
+    )
+
+    @Provides
+    fun provideMembersUseCases(repository: MembersRepository) = MembersUseCases(
+        create = CreateMember(repository),
+        saveImage = com.optic.paqta.domain.use_cases.members.SaveImage(repository)
     )
 
     @Provides

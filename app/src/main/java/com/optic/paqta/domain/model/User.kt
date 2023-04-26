@@ -11,8 +11,7 @@ data class User(
     var password: String = "",
     var image: String = "",
     var phone: String = "",
-    // GENERAR OTRO MODELO PARA LOS FAMILIARES
-//    var members: ArrayList<Member> = ArrayList()
+    var members: ArrayList<Member> = ArrayList()
 ) {
     fun toJson(): String = Gson().toJson(User(
         id,
@@ -21,7 +20,7 @@ data class User(
         password,
         if (image != "") URLEncoder.encode(image, StandardCharsets.UTF_8.toString()) else "",
         phone,
-//        members
+        members
     ))
 
     companion object {

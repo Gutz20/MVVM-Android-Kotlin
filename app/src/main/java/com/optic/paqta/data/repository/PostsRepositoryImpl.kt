@@ -53,8 +53,7 @@ class PostsRepositoryImpl @Inject constructor(
                                     post.user = user
                                 }
                             }
-
-                            Log.d("PostsRepositoryImpl", "Id: ${id}")
+//                            Log.d("PostsRepositoryImpl", "Id: ${id}")
                         }
                     }.forEach {
                         it.await()

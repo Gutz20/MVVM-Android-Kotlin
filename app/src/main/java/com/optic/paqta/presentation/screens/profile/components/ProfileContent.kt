@@ -113,6 +113,17 @@ fun ProfileContent(navController: NavHostController, viewModel: ProfileViewModel
                 )
             }
         )
+        DefaultButton(
+            modifier = Modifier.width(250.dp),
+            text = "Ver mis familiares",
+            color = Color.White,
+            icon = Icons.Default.Edit,
+            onClick = {
+                navController.navigate(
+                    route = DetailsScreen.ProfileUpdate.passUser(viewModel.userData.toJson())
+                )
+            }
+        )
 
         Spacer(modifier = Modifier.height(10.dp))
         DefaultButton(

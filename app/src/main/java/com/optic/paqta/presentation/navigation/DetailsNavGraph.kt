@@ -3,6 +3,7 @@ package com.optic.paqta.presentation.navigation
 import androidx.navigation.*
 import androidx.navigation.compose.composable
 import com.optic.paqta.domain.model.Category
+import com.optic.paqta.presentation.screens.add_family.AddFamilyScreen
 import com.optic.paqta.presentation.screens.detail_backpack.DetailBackpackScreen
 import com.optic.paqta.presentation.screens.detail_category_backpack.DetailCategoryBakpackScreen
 import com.optic.paqta.presentation.screens.detail_post.DetailPostScreen
@@ -34,6 +35,17 @@ fun NavGraphBuilder.detailsNavGraph(navController: NavHostController) {
         ) {
             it.arguments?.getString("user")?.let {
                 ProfileUpdateScreen(navController, user = it)
+            }
+        }
+
+        composable(
+            route = DetailsScreen.AddMember.route,
+            arguments = listOf(navArgument("user") {
+                type = NavType.StringType
+            })
+        ) {
+            it.arguments?.getString("user")?.let {
+                AddFamilyScreen(navController)
             }
         }
 
@@ -81,6 +93,8 @@ fun NavGraphBuilder.detailsNavGraph(navController: NavHostController) {
             }
         }
 
+
+
     }
 
 }
@@ -91,6 +105,11 @@ sealed class DetailsScreen(val route: String) {
     object ProfileUpdate: DetailsScreen("profile/update/{user}") {
         fun passUser(user: String) = "profile/update/$user"
     }
+
+    object AddMember: DetailsScreen("profile/update/member/{user}") {
+        fun passMember(user: String) = "profile/update/member/$user"
+    }
+
     object DetailPost: DetailsScreen("posts/detail/{post}") {
         fun passPost(post: String) = "posts/detail/$post"
     }

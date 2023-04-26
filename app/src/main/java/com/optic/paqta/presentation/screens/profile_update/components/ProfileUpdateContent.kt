@@ -147,7 +147,7 @@ fun ProfileUpdateContent(navController: NavHostController, viewModel: ProfileUpd
                     text = "AGREGE FAMILIAR",
                     color = Red500,
                     onClick = {
-                        // AGREGAR NAVIGATION
+                        navController.navigate(DetailsScreen.AddMember.route)
                     }
                 )
             }

@@ -7,7 +7,7 @@ import java.io.File
 
 interface MembersRepository {
 
-    suspend fun create(member: Member): Response<Boolean>
+    suspend fun create(member: Member, file: File): Response<Boolean>
 
     suspend fun update(member: Member): Response<Boolean>
 

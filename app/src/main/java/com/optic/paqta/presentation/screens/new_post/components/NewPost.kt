@@ -26,9 +26,10 @@ fun NewPost(viewModel: NewPostViewModel = hiltViewModel()) {
             Toast.makeText(LocalContext.current, "La publicacion se ha creado correctamente", Toast.LENGTH_LONG).show()
         }
         is Response.Failure -> {
-            Toast.makeText(LocalContext.current, response.exception?.message ?: "Error desconido", Toast.LENGTH_LONG).show()
+            Toast.makeText(LocalContext.current, response.exception?.message ?: "Error desconocido", Toast.LENGTH_LONG).show()
         }
 
+        else -> {}
     }
 
 }
