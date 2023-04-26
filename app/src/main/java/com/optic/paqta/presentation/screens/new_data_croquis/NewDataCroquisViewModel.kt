@@ -1,18 +1,17 @@
-package com.optic.paqta.presentation.screens.new_post
+package com.optic.paqta.presentation.screens.new_data_croquis
 
 import android.content.Context
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.optic.paqta.R
+import com.optic.paqta.domain.model.PointDanger
 
-import com.optic.paqta.domain.model.Post
 import com.optic.paqta.domain.model.Response
 import com.optic.paqta.domain.use_cases.auth.AuthUseCases
-import com.optic.paqta.domain.use_cases.posts.PostsUseCases
+import com.optic.paqta.domain.use_cases.points.PointsUseCases
 import com.optic.paqta.presentation.utils.ComposeFileProvider
 import com.optic.paqta.presentation.utils.ResultingActivityHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,47 +21,44 @@ import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
-class NewPostViewModel @Inject constructor(
+class NewDataCroquisViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val postsUseCases: PostsUseCases,
+    private val pointsDangersUseCases: PointsUseCases,
     private val authUseCases: AuthUseCases,
 ): ViewModel() {
 
-    var state by mutableStateOf(NewPostState())
+    var state by mutableStateOf(NewDataCroquisState())
 
     // FILE
     var file: File? = null
     val resultingActivityHandler = ResultingActivityHandler()
 
     // RESPONSE
-    var createPostResponse by mutableStateOf<Response<Boolean>?>(null)
+    var createDataCroquisResponse by mutableStateOf<Response<Boolean>?>(null)
         private set
 
     //USER SESSION
     val currentUser = authUseCases.getCurrentUser()
 
     val radioOptions = listOf(
-        CategoryRadioButton("POST ", R.drawable.icon_pc),
-        CategoryRadioButton("POST", R.drawable.icon_ps4),
-        CategoryRadioButton("POST", R.drawable.icon_xbox),
-        CategoryRadioButton("POST", R.drawable.icon_nintendo),
-        CategoryRadioButton("POST", R.drawable.icon_mobile),
+        CategoryRadioButton("ZONA DE ALTO PELIGRO ", R.drawable.baseline_dangerous_24),
+        CategoryRadioButton("ZONA DE ALTO RIESGO", R.drawable.outline_warning_amber_24),
+        CategoryRadioButton("ZONA SEGURA", R.drawable.baseline_security_24),
     )
 
-    fun createPost(post: Post) = viewModelScope.launch {
-        createPostResponse = Response.Loading
-        val result = postsUseCases.create(post, file!!)
-        createPostResponse = result
+    fun createPointDanger(pointDanger: PointDanger) = viewModelScope.launch {
+        createDataCroquisResponse = Response.Loading
+        val result = pointsDangersUseCases.createPointDanger(pointDanger)
+        createDataCroquisResponse = result
     }
 
-    fun onNewPost() {
-        val post = Post(
-            name = state.name,
+    fun onNewPointDanger() {
+        val pointDanger = PointDanger(
             description = state.description,
             category = state.category,
             idUser = currentUser?.uid ?: ""
         )
-        createPost(post)
+        createPointDanger(pointDanger)
     }
 
     fun pickImage() = viewModelScope.launch {
@@ -83,16 +79,10 @@ class NewPostViewModel @Inject constructor(
 
     fun clearForm() {
         state = state.copy(
-            name ="",
             category = "",
             description = "",
-            image = ""
         )
-        createPostResponse = null
-    }
-
-    fun onNameInput(name: String) {
-        state = state.copy(name = name)
+        createDataCroquisResponse = null
     }
 
     fun onCategoryInput(category: String) {
@@ -101,10 +91,6 @@ class NewPostViewModel @Inject constructor(
 
     fun onDescriptionInput(description: String) {
         state = state.copy(description = description)
-    }
-
-    fun onImageInput(image: String) {
-        state = state.copy(image = image)
     }
 }
 

@@ -38,7 +38,7 @@ fun DetailPostContent(
             .verticalScroll(rememberScrollState()),
     ) {
 
-        Box() {
+        Box {
 
             AsyncImage(
                 modifier = Modifier
@@ -68,34 +68,6 @@ fun DetailPostContent(
             color = Red500,
             fontWeight = FontWeight.Bold
         )
-        Card(
-            modifier = Modifier.padding(start = 13.dp, bottom = 15.dp),
-            elevation = 4.dp,
-            shape = RoundedCornerShape(20.dp)
-        ) {
-            Row(
-                modifier = Modifier.padding(vertical = 7.dp, horizontal = 20.dp),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Image(
-                    modifier = Modifier.size(25.dp),
-                    painter = painterResource(
-                        id = if (viewModel.post.category == "PC") R.drawable.icon_pc
-                        else if (viewModel.post.category == "XBOX") R.drawable.icon_xbox
-                        else if (viewModel.post.category == "PS4") R.drawable.icon_ps4
-                        else if (viewModel.post.category == "NINTENDO") R.drawable.icon_nintendo
-                        else R.drawable.icon_mobile
-                    ),
-                    contentDescription = ""
-                )
-                Spacer(modifier = Modifier.width(7.dp))
-                Text(
-                    text = viewModel.post.category,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 17.sp
-                )
-            }
-        }
         Divider(
             modifier = Modifier.padding(end = 20.dp, top = 10.dp, bottom = 10.dp),
             startIndent = 20.dp,

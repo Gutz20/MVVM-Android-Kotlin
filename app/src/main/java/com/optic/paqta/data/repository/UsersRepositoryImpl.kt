@@ -5,6 +5,7 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.storage.StorageReference
 import com.optic.paqta.core.Constants.USERS
 import com.optic.paqta.domain.model.Member
+import com.optic.paqta.domain.model.PointDanger
 import com.optic.paqta.domain.model.Response
 import com.optic.paqta.domain.model.User
 import com.optic.paqta.domain.repository.UsersRepository
@@ -83,7 +84,20 @@ class UsersRepositoryImpl @Inject constructor(
         }
     }
 
-
+    override suspend fun addPointDanger(
+        idUser: String,
+        datos: ArrayList<PointDanger>
+    ): Response<Boolean> {
+        return try {
+            val snapshotListener = usersRef.document(idUser).addSnapshotListener { snapshot, e ->
+                val user = snapshot?.toObject(User::class.java) ?: User()
+            }
+            Response.Success(true)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Response.Failure(e)
+        }
+    }
 
 
 }

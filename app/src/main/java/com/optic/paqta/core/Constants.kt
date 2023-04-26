@@ -11,5 +11,6 @@ object Constants {
     const val CATEGORIES = "Categories"
     const val CONTENT = "Contents"
     const val MEMBERS = "Members"
+    const val POINTS = "Points"
 
 }

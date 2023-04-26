@@ -2,19 +2,16 @@ package com.optic.paqta.presentation.navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.outlined.Build
 import androidx.compose.material.icons.outlined.Email
-import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.List
-import androidx.compose.material.icons.outlined.LocationOn
 import androidx.compose.material.icons.outlined.Place
-import androidx.compose.material.icons.outlined.ThumbUp
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.optic.paqta.presentation.screens.my_croquis.MyCroquisScren
 import com.optic.paqta.presentation.screens.my_backpack.MyBackpacksScreen
 import com.optic.paqta.presentation.screens.posts.PostsScreen
 import com.optic.paqta.presentation.screens.profile.ProfileScreen
@@ -45,10 +42,12 @@ fun HomeBottomBarNavGraph(navController: NavHostController) {
             ProfileScreen(navController)
         }
 
+        composable(route = HomeBottomBarScreen.Croquis.route) {
+            MyCroquisScren(navController)
+        }
+
         detailsNavGraph(navController)
-
     }
-
 }
 
 
@@ -80,6 +79,12 @@ sealed class HomeBottomBarScreen(
         route = "profile",
         title = "Perfil",
         icon = Icons.Default.Person
+    )
+
+    object Croquis: HomeBottomBarScreen(
+        route = "croquis",
+        title = "Croquis",
+        icon = Icons.Default.LocationOn
     )
 
 }

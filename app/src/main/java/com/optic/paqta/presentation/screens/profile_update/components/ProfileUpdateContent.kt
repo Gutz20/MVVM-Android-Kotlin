@@ -69,7 +69,7 @@ fun ProfileUpdateContent(navController: NavHostController, viewModel: ProfileUpd
                 Spacer(modifier = Modifier.height(30.dp))
 
                 if (viewModel.state.image != "") {
-                    Log.d("ProfileUpdateContent", "image: ${viewModel.state.image}")
+//                    Log.d("ProfileUpdateContent", "image: ${viewModel.state.image}")
                     AsyncImage(
                         modifier = Modifier
                             .height(100.dp)

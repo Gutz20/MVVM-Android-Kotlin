@@ -7,23 +7,24 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.optic.paqta.core.Constants
 import com.optic.paqta.core.Constants.BACKPACKS
 import com.optic.paqta.core.Constants.CATEGORIES
-import com.optic.paqta.core.Constants.ITEMS
 import com.optic.paqta.core.Constants.MEMBERS
+import com.optic.paqta.core.Constants.POINTS
 import com.optic.paqta.core.Constants.POSTS
 import com.optic.paqta.core.Constants.USERS
 import com.optic.paqta.data.repository.AuthRepositoryImpl
 import com.optic.paqta.data.repository.BackpacksRepositoryImpl
 import com.optic.paqta.data.repository.CategoriesRepositoryImpl
 import com.optic.paqta.data.repository.MembersRepositoryImpl
+import com.optic.paqta.data.repository.PointsRepositoryImpl
 import com.optic.paqta.data.repository.PostsRepositoryImpl
 import com.optic.paqta.data.repository.UsersRepositoryImpl
 import com.optic.paqta.domain.repository.AuthRepository
 import com.optic.paqta.domain.repository.BackpacksRepository
 import com.optic.paqta.domain.repository.CategoriesRepository
 import com.optic.paqta.domain.repository.MembersRepository
+import com.optic.paqta.domain.repository.PointsDangerRepository
 import com.optic.paqta.domain.repository.PostsRepository
 import com.optic.paqta.domain.repository.UsersRepository
 import com.optic.paqta.domain.use_cases.auth.*
@@ -39,6 +40,10 @@ import com.optic.paqta.domain.use_cases.categories.CategoriesUseCases
 import com.optic.paqta.domain.use_cases.categories.GetCategories
 import com.optic.paqta.domain.use_cases.members.CreateMember
 import com.optic.paqta.domain.use_cases.members.MembersUseCases
+import com.optic.paqta.domain.use_cases.points.CreatePointDanger
+import com.optic.paqta.domain.use_cases.points.GetPointsByIdUser
+import com.optic.paqta.domain.use_cases.points.PointsUseCases
+import com.optic.paqta.domain.use_cases.points.SaveImagePointDanger
 import com.optic.paqta.domain.use_cases.posts.*
 import com.optic.paqta.domain.use_cases.users.*
 import dagger.Module
@@ -102,6 +107,15 @@ object AppModule {
     fun provideMembersRef(db: FirebaseFirestore): CollectionReference = db.collection(MEMBERS)
 
     @Provides
+    @Named(POINTS)
+    fun providePointsRef(db: FirebaseFirestore): CollectionReference = db.collection(POINTS)
+
+    @Provides
+    @Named(POINTS)
+    fun provideStoragePointsRef(storage: FirebaseStorage): StorageReference =
+        storage.reference.child(POINTS)
+
+    @Provides
     fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
 
     @Provides
@@ -123,6 +137,9 @@ object AppModule {
     fun provideMembersRepository(impl: MembersRepositoryImpl): MembersRepository = impl
 
     @Provides
+    fun providePointsRepository(impl: PointsRepositoryImpl): PointsDangerRepository = impl
+
+    @Provides
     fun provideAuthUseCases(repository: AuthRepository) = AuthUseCases(
         getCurrentUser = GetCurrentUser(repository),
         login = Login(repository),
@@ -136,7 +153,8 @@ object AppModule {
         getUserById = GetUserById(repository),
         update = Update(repository),
         saveImage = SaveImage(repository),
-        addMember = AddMember(repository)
+        addMember = AddMember(repository),
+        addPointDanger = AddPointDanger(repository)
     )
 
     @Provides
@@ -170,6 +188,13 @@ object AppModule {
         addItemBackpack = AddItemBackpack(repository),
         deleteItemBackpack = DeleteItemBackpack(repository),
         getBackpacksByIdUser = GetBackpacksByIdUser(repository)
+    )
+
+    @Provides
+    fun providePointsUseCases(repository: PointsDangerRepository) = PointsUseCases(
+        createPointDanger = CreatePointDanger(repository),
+        saveImage = SaveImagePointDanger(repository),
+        getPointsByIdUser = GetPointsByIdUser(repository)
     )
 
 }

@@ -5,5 +5,6 @@ data class UsersUseCases(
     val getUserById: GetUserById,
     val update: Update,
     val saveImage: SaveImage,
-    val addMember: AddMember
+    val addMember: AddMember,
+    val addPointDanger: AddPointDanger,
 )

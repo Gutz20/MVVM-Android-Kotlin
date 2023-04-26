@@ -27,20 +27,21 @@ fun HomeScreen(navController: NavHostController = rememberNavController()) {
 fun BottomBar(navController: NavHostController) {
     val screens = listOf(
         HomeBottomBarScreen.Ubication,
+        HomeBottomBarScreen.Croquis,
         HomeBottomBarScreen.Posts,
         HomeBottomBarScreen.Backpacks,
         HomeBottomBarScreen.Profile,
-        )
-    
+    )
+
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
     val bottomBarDestination = screens.any { it.route == currentDestination?.route }
-    
+
     if (bottomBarDestination) {
-        
+
         BottomNavigation(
 //            backgroundColor = Red500
-        ){
+        ) {
             screens.forEach { screen ->
                 AddItem(
                     screen = screen,
@@ -49,9 +50,9 @@ fun BottomBar(navController: NavHostController) {
                 )
             }
         }
-        
+
     }
-    
+
 }
 
 @Composable
@@ -63,7 +64,7 @@ fun RowScope.AddItem(
 
     BottomNavigationItem(
         label = {
-          Text(text = screen.title)
+            Text(text = screen.title)
         },
         icon = {
             Icon(
@@ -72,7 +73,7 @@ fun RowScope.AddItem(
             )
         },
         selected = currentDestination?.hierarchy?.any {
-           it.route == screen.route
+            it.route == screen.route
         } == true,
         unselectedContentColor = LocalContentColor.current.copy(alpha = ContentAlpha.disabled),
         onClick = {

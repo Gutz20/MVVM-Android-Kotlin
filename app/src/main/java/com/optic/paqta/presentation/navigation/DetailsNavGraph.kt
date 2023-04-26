@@ -8,6 +8,7 @@ import com.optic.paqta.presentation.screens.detail_backpack.DetailBackpackScreen
 import com.optic.paqta.presentation.screens.detail_category_backpack.DetailCategoryBakpackScreen
 import com.optic.paqta.presentation.screens.detail_post.DetailPostScreen
 import com.optic.paqta.presentation.screens.new_backpack.NewBackpackScreen
+import com.optic.paqta.presentation.screens.new_data_croquis.NewDataCroquisScreen
 import com.optic.paqta.presentation.screens.new_post.NewPostScreen
 import com.optic.paqta.presentation.screens.profile_update.ProfileUpdateScreen
 import com.optic.paqta.presentation.screens.update_post.UpdatePostScreen
@@ -25,6 +26,10 @@ fun NavGraphBuilder.detailsNavGraph(navController: NavHostController) {
 
         composable(route = DetailsScreen.NewBackpack.route) {
             NewBackpackScreen(navController = navController)
+        }
+        
+        composable(route = DetailsScreen.NewDataCroquis.route) {
+            NewDataCroquisScreen(navController = navController)
         }
         
         composable(
@@ -102,6 +107,7 @@ fun NavGraphBuilder.detailsNavGraph(navController: NavHostController) {
 sealed class DetailsScreen(val route: String) {
     object NewPost: DetailsScreen("posts/new")
     object NewBackpack: DetailsScreen("backpacks/new")
+    object NewDataCroquis: DetailsScreen("croquis/new")
     object ProfileUpdate: DetailsScreen("profile/update/{user}") {
         fun passUser(user: String) = "profile/update/$user"
     }

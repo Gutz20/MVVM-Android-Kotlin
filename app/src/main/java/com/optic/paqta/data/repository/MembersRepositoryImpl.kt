@@ -17,6 +17,10 @@ class MembersRepositoryImpl @Inject constructor(
     @Named(MEMBERS) private val membersRef: CollectionReference,
     @Named(MEMBERS) private val storageMembersRef: StorageReference
 ): MembersRepository {
+    override fun getMembersByUserId(idUser: String): Flow<Response<List<Member>>> {
+        TODO("Not yet implemented")
+    }
+
     override suspend fun create(member: Member, file: File): Response<Boolean> {
         return try {
             // IMAGE

@@ -26,17 +26,17 @@ fun MyPostsScreen(navController: NavHostController) {
         content = {
            GetPostsByIdUser(navController = navController)
         },
-        floatingActionButton = {
-            FloatingActionButton(
-                modifier = Modifier.padding(bottom = 50.dp),
-                onClick = { navController.navigate(DetailsScreen.NewPost.route) }
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Add,
-                    contentDescription = ""
-                )
-            }
-        }
+//        floatingActionButton = {
+//            FloatingActionButton(
+//                modifier = Modifier.padding(bottom = 50.dp),
+//                onClick = { navController.navigate(DetailsScreen.NewPost.route) }
+//            ) {
+//                Icon(
+//                    imageVector = Icons.Default.Add,
+//                    contentDescription = ""
+//                )
+//            }
+//        }
     ) 
     
 }

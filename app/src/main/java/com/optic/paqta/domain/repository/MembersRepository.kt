@@ -1,11 +1,14 @@
 package com.optic.paqta.domain.repository
 
 import com.optic.paqta.domain.model.Member
+import com.optic.paqta.domain.model.Post
 import com.optic.paqta.domain.model.Response
 import kotlinx.coroutines.flow.Flow
 import java.io.File
 
 interface MembersRepository {
+
+    fun getMembersByUserId(idUser: String): Flow<Response<List<Member>>>
 
     suspend fun create(member: Member, file: File): Response<Boolean>
 

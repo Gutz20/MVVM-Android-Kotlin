@@ -1,6 +1,7 @@
 package com.optic.paqta.domain.repository
 
 import com.optic.paqta.domain.model.Member
+import com.optic.paqta.domain.model.PointDanger
 import com.optic.paqta.domain.model.Response
 import com.optic.paqta.domain.model.User
 import kotlinx.coroutines.flow.Flow
@@ -14,5 +15,6 @@ interface UsersRepository {
     fun getUserById(id: String): Flow<User>
 
     suspend fun addMember(idUser: String, datos: ArrayList<Member>): Response<Boolean>
+    suspend fun addPointDanger(idUser: String, datos: ArrayList<PointDanger>): Response<Boolean>
 
 }

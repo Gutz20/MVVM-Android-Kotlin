@@ -58,8 +58,6 @@ fun ProfileContent(navController: NavHostController, viewModel: ProfileViewModel
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-
-
                 Spacer(modifier = Modifier.height(30.dp))
                 Text(
                     text = "Usuario",
@@ -84,11 +82,8 @@ fun ProfileContent(navController: NavHostController, viewModel: ProfileViewModel
                         contentDescription = ""
                     )
                 }
-
             }
-
         }
-
         Spacer(modifier = Modifier.height(55.dp))
         Text(
             text = viewModel.userData.username,
